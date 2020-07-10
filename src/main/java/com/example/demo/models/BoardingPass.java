@@ -11,7 +11,8 @@ import lombok.Setter;
 @Entity
 @Table(name = "BoardingPassTable")
 @Getter @Setter @ToString @NoArgsConstructor
-public clBoardingPass {
+public class BoardingPass {
+
 
 	private int bp_ID;
 	
