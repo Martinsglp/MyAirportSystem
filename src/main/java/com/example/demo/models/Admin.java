@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.MapsId;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -50,8 +51,11 @@ public class Admin extends User implements Serializable{
 	
 	
 	/*
-	@OneToOne(mappedBy = "user")
+	@OneToOne(mappedBy = "admin")
 	private User users;
 	*/
+	@OneToMany(mappedBy = "admin")
+	private Collection<RegisteredUser> allRegUsers;
+	
 	
 }
