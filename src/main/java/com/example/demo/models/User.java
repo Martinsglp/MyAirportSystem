@@ -1,10 +1,16 @@
 package com.example.demo.models;
 
+import java.util.Collection;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.MappedSuperclass;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
@@ -14,15 +20,9 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-@Entity
-@Table(name = "UserTable")
+@MappedSuperclass
 @Getter @Setter @ToString @NoArgsConstructor
 public class User {
-	
-	@Id
-	@Column(name = "US_ID")
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int us_ID;
 	
 	@Column(name="Username")
 	@Size(min=4, max=30)
@@ -49,11 +49,6 @@ public class User {
 	//@Pattern(regexp = "[a-zA-Z\\s]+$", message = "Check name!")
 	@Pattern(regexp = "[A-Za-z0-9+_.-]+@(.+)$", message = "Check name!") // TODO check email regex
 	private String email;
-	
-	@Id
-	@Column(name = "ROLE_ID")
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int role_ID;
 
 	public User(@Size(min = 4, max = 30) @Pattern(regexp = "[a-zA-Z\\s]+$", message = "Check name!") String username,
 			@Size(min = 6, max = 30) @Pattern(regexp = "[a-zA-Z\\s]+$", message = "Check name!") String password,
@@ -68,5 +63,13 @@ public class User {
 		this.email = email;
 	}
 	
-
+	
+	/*
+	@OneToOne
+	@JoinColumn(name = "AD_ID")
+	private Admin admin;
+*/
+	
+	
+	
 }

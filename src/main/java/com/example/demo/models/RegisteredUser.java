@@ -9,6 +9,8 @@ import javax.persistence.Table;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
+import com.example.demo.models.enums.userType;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -28,10 +30,13 @@ public class RegisteredUser extends User{
 	@Size(min = 0, max = 100)
 	private int Extra_points;
 	
-	@Id
+	/*@Id
 	@Column(name = "ROLE_ID")
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int role_ID;
+	private int role_ID;*/
+
+	@Column(name = "Type")
+	private userType type;
 
 	public RegisteredUser(
 			@Size(min = 4, max = 30) @Pattern(regexp = "[a-zA-Z\\s]+$", message = "Check name!") String username,
@@ -39,11 +44,13 @@ public class RegisteredUser extends User{
 			@Size(min = 4, max = 30) @Pattern(regexp = "[a-zA-Z\\s]+$", message = "Check name!") String name,
 			@Size(min = 4, max = 30) @Pattern(regexp = "[a-zA-Z\\s]+$", message = "Check name!") String surname,
 			@Size(min = 4, max = 30) @Pattern(regexp = "[a-zA-Z\\s]+$", message = "Check name!") String email,
-			@Size(min = 0, max = 100) int extra_points, int role_ID) {
+			@Size(min = 0, max = 100) int extra_points, userType type) {
 		super(username, password, name, surname, email);
 		Extra_points = extra_points;
-		this.role_ID = role_ID;
+		this.type = type;
 	}
+	
+	
 	
 	
 	
