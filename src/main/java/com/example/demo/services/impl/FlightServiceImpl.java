@@ -1,7 +1,9 @@
-package com.example.demo.services;
+package com.example.demo.services.impl;
 
 import com.example.demo.models.Flight;
 import com.example.demo.repos.IFlightRepo;
+import com.example.demo.service.IFlightService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
