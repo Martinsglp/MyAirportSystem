@@ -1,6 +1,10 @@
 package com.example.demo.models;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 import lombok.Setter;
@@ -13,15 +17,27 @@ import lombok.NoArgsConstructor;
 @Getter @Setter @ToString @NoArgsConstructor
 public class Seat {
 	
-	private char row;
-	private short seat;
+	@Id
+	@Column(name = "SE_ID")
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private int se_ID;
 	
+	@Column(name = "planeRow")
+	private char planeRow;
 	
-	public Seat(char row, short seat) {
+	@Column(name = "SeatNr")
+	private short seatNr;
+
+	public Seat(char planeRow, short seatNr) {
 		super();
-		this.row = row;
-		this.seat = seat;
+		this.planeRow = planeRow;
+		this.seatNr = seatNr;
 	}
+
+	
+	
+	
+	
 	
 	
 	
