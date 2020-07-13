@@ -47,9 +47,8 @@ public class RegisteredUser extends User{
 		this.type = type;
 	}
 
-
 	@OneToMany(mappedBy = "registeredUser")
 	private Collection<BoardingPass> boardingPasses;
-	
+
 	
 }

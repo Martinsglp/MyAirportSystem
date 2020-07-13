@@ -1,15 +1,12 @@
 package com.example.demo.models;
 
 import javax.persistence.*;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 import lombok.Setter;
 
-import java.util.Collection;
 
 @Entity
 @Table(name = "BoardingPassTable")
@@ -31,11 +28,13 @@ public class BoardingPass {
 		
 	}
 
-
 	@ManyToOne
 	@JoinColumn(name="RUS_ID")
 	private RegisteredUser registeredUser;
-	
-	
+
+	@ManyToOne
+	@JoinColumn(name = "FL_ID")
+	private Flight flight;
+
 	
 }
