@@ -1,12 +1,22 @@
 package com.example.demo.models;
 
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+
 import javax.persistence.*;
+
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 import lombok.Setter;
-
 
 @Entity
 @Table(name = "BoardingPassTable")
@@ -27,7 +37,7 @@ public class BoardingPass {
 		Priority_Group = priority_Group;
 		
 	}
-
+	
 	@ManyToOne
 	@JoinColumn(name="RUS_ID")
 	private RegisteredUser registeredUser;
@@ -37,9 +47,22 @@ public class BoardingPass {
 	private Flight flight;
 
 	@OneToOne
+	@JoinColumn(name="BP_ID")
+	private BoardingPass boardingPass;
+
+	/*
 	@JoinColumn(name="SE_ID")
 	private Seat seat;
+*/
 
 
 	
+	
+	@OneToOne
+	@JoinColumn(name="SE_ID")
+	private Seat seat;
+	
+	
+	
+
 }
