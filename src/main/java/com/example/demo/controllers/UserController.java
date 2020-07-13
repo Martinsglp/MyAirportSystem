@@ -1,7 +1,7 @@
 package com.example.demo.controllers;
 
 import com.example.demo.models.Flight;
-import com.example.demo.services.IFlightService;
+import com.example.demo.service.IFlightService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,6 +19,13 @@ public class UserController {
     @Autowired
     IFlightService flightService;
 
+    @GetMapping("/saveTestingData")
+    public String getSaveTestingData() {
+        System.out.println("saveTestingData");
+        flightService.saveTestingData();
+        return "show-flight-selecting-page";
+    }
+
     @GetMapping("/showFlightSelectingPage") // url: localhost:8080/guest/showFlightSelectingPage
     public String getShowFlightSelectingPage(Flight flight) { // empty flight for filling data
         return "show-flight-selecting-page";
@@ -30,7 +37,6 @@ public class UserController {
         if (result.hasErrors()) {
             return "show-flight-selecting-page";
         }
-//        flightService.showSelectedFlightsInfoByAirports(flight.getAirportFrom(), flight.getAirportTo());
         model.addAttribute("allFlightsByAirports", flightService.showSelectedFlightsInfoByAirports(flight.getAirportFrom(), flight.getAirportTo()));
         return "show-flights-by-airports-page";
     }
