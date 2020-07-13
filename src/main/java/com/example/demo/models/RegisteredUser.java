@@ -1,11 +1,6 @@
 package com.example.demo.models;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
@@ -13,6 +8,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+
+import java.util.Collection;
 
 @Entity
 @Table(name = "RegisteredUserTable")
@@ -44,8 +41,9 @@ public class RegisteredUser extends User{
 		Extra_points = extra_points;
 		this.role_ID = role_ID;
 	}
-	
-	
-	
+/*
+	@OneToMany(mappedBy="RegisteredUser")
+	private Collection<BoardingPass> boardingPasses;
+	*/
 	
 }
