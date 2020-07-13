@@ -26,7 +26,7 @@ public class Flight {
 
     @Column(name="DateAndTime")
     // TODO data format validation
-    private Date dateAndTime;
+    private Date creationDateTime;
 
     @Column(name="Duration")
     @Min(value = 0L, message = "The value must be positive")
@@ -41,7 +41,7 @@ public class Flight {
     private String airportTo;
 
     public Flight(Date dateAndTime, int duration, String airportFrom, String airportTo) {
-        this.dateAndTime = dateAndTime;
+        this.creationDateTime = dateAndTime;
         this.duration = duration;
         this.airportFrom = airportFrom;
         this.airportTo = airportTo;
