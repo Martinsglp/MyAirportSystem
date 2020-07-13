@@ -53,10 +53,6 @@ public class RegisteredUser extends User{
 	}
 	
 	
-	@ManyToOne
-	@JoinColumn(name = "AD_ID")
-	private Admin admin;
-	
 	
 	
 }

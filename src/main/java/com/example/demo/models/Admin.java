@@ -46,16 +46,6 @@ public class Admin extends User implements Serializable{
 		this.type = type;
 	}
 
-
-	
-	
-	
-	/*
-	@OneToOne(mappedBy = "admin")
-	private User users;
-	*/
-	@OneToMany(mappedBy = "admin")
-	private Collection<RegisteredUser> allRegUsers;
 	
 	
 }
