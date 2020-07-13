@@ -1,8 +1,14 @@
-package com.example.demo.services;
+/*<<<<<<< HEAD:src/main/java/com/example/demo/service/FlightServiceImpl.java
+package com.example.demo.service;
+======= */
+package com.example.demo.service.impl;
+//>>>>>>> master:src/main/java/com/example/demo/service/impl/FlightServiceImpl.java
 
 import com.example.demo.models.Flight;
 import com.example.demo.models.enums.AirportList;
 import com.example.demo.repos.IFlightRepo;
+import com.example.demo.service.IFlightService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

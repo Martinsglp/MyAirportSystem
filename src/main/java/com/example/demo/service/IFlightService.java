@@ -1,4 +1,4 @@
-package com.example.demo.services;
+package com.example.demo.service;
 
 import com.example.demo.models.Flight;
 import com.example.demo.models.enums.AirportList;
@@ -11,4 +11,7 @@ public interface IFlightService {
     boolean registerFlight(LocalDateTime creationDateTime, int duration, AirportList airportFrom, AirportList airportTo);
 
     ArrayList<Flight> showSelectedFlightsInfoByAirports(AirportList airportFrom, AirportList airportTo);
+
+    boolean registerFlight(LocalDateTime creationDateTime, int duration, String airportFrom, String airportTo);
 }
+
