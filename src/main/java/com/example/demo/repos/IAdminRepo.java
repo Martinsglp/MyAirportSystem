@@ -18,4 +18,7 @@ public interface IAdminRepo extends CrudRepository<Admin, Integer> {
 	RegisteredUser findByNameAndSurname(String name, String surname);
 	
 	
+	
+	
+	
 }

@@ -1,4 +1,8 @@
-package com.example.demo.services.impl;
+/*<<<<<<< HEAD:src/main/java/com/example/demo/service/FlightServiceImpl.java
+package com.example.demo.service;
+======= */
+package com.example.demo.service.impl;
+//>>>>>>> master:src/main/java/com/example/demo/service/impl/FlightServiceImpl.java
 
 import com.example.demo.models.Flight;
 import com.example.demo.repos.IFlightRepo;
