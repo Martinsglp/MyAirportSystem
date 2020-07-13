@@ -1,0 +1,38 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<form action="#" th:action="@{/admin/registerNewFlight}" th:object="${flight}" method="post">
+
+    <table>
+        <tr>
+            <td> Please insert date: </td>
+            <td> <input type="datetime-local" th:field="*{creationDateTime}"> </td>
+            <td th:if="${#fields.hasErrors('creationDateTime')}" th:errors="*{creationDateTime}"></td>
+        </tr>
+
+        <tr>
+            <td> Please insert duration: </td>
+            <td> <input type="text" th:field="*{duration}"> </td>
+            <td th:if="${#fields.hasErrors('duration')}" th:errors="*{duration}"></td>
+        </tr>
+
+        <tr>
+            <td> Please insert AirportFrom: </td>
+            <td> <input type="text" th:field="*{airportFrom}"> </td>
+            <td th:if="${#fields.hasErrors('airportFrom')}" th:errors="*{airportFrom}"></td>
+        </tr>
+
+        <tr>
+            <td> Please insert AirportTo: </td>
+            <td> <input type="text" th:field="*{airportTo}"> </td>
+            <td th:if="${#fields.hasErrors('airportTo')}" th:errors="*{airportTo}"></td>
+        </tr>
+
+        </tr>
+
+
+    </table>
+
+    <input type="submit">
+</form>
+</body>
+</html>
