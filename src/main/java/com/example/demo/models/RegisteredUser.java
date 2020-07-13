@@ -1,5 +1,7 @@
 package com.example.demo.models;
 
+import java.util.Collection;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -7,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
@@ -51,8 +54,8 @@ public class RegisteredUser extends User{
 		Extra_points = extra_points;
 		this.type = type;
 	}
-	
-	
-	
+
+	@OneToMany(mappedBy = "registeredUser")
+	private Collection<BoardingPass> boardingPasses;
 	
 }

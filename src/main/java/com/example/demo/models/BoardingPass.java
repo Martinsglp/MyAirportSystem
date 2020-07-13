@@ -1,5 +1,6 @@
 package com.example.demo.models;
 
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,6 +9,9 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
+
+import javax.persistence.*;
+
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -34,9 +38,12 @@ public class BoardingPass {
 		
 	}
 	
+	@ManyToOne
+	@JoinColumn(name="RUS_ID")
+	private RegisteredUser registeredUser;
 
-	
-	
-	
-	
+	@ManyToOne
+	@JoinColumn(name = "FL_ID")
+	private Flight flight;
+
 }

@@ -8,6 +8,7 @@ import lombok.ToString;
 import javax.persistence.*;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.Pattern;
+import java.util.Collection;
 import java.util.Date;
 
 @Entity
@@ -45,4 +46,8 @@ public class Flight {
         this.airportFrom = airportFrom;
         this.airportTo = airportTo;
     }
+
+    @OneToMany(mappedBy = "flight")
+    private Collection<BoardingPass> boardingPasses;
+
 }
