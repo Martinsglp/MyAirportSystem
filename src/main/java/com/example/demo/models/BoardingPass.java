@@ -45,6 +45,10 @@ public class BoardingPass {
 	@ManyToOne
 	@JoinColumn(name = "FL_ID")
 	private Flight flight;
+
+	@OneToOne
+	@JoinColumn(name="BP_ID")
+	private BoardingPass boardingPass;
 	
 	
 	@OneToOne

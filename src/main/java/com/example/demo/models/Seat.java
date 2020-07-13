@@ -40,6 +40,9 @@ public class Seat {
 	@JoinColumn(name="BP_ID")
 	private BoardingPass boardingPass;
 	
+	@JoinColumn(name="SE_ID")
+	private Seat seat;
+	
 	
 	
 	
