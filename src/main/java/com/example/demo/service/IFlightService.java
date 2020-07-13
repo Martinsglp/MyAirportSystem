@@ -12,6 +12,5 @@ public interface IFlightService {
 
     ArrayList<Flight> showSelectedFlightsInfoByAirports(AirportList airportFrom, AirportList airportTo);
 
-    boolean registerFlight(LocalDateTime creationDateTime, int duration, String airportFrom, String airportTo);
 }
 
