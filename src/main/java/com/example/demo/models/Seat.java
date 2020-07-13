@@ -42,7 +42,6 @@ public class Seat {
 
 
 	/*
->>>>>>> master
 	@JoinColumn(name="SE_ID")
 	private Seat seat;
 	*/
