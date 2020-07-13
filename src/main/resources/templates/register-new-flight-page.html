@@ -5,7 +5,7 @@
     <table>
         <tr>
             <td> Please insert date: </td>
-            <td> <input type="date" th:field="*{creationDateTime}"> </td>
+            <td> <input type="datetime-local" th:field="*{creationDateTime}"> </td>
             <td th:if="${#fields.hasErrors('creationDateTime')}" th:errors="*{creationDateTime}"></td>
         </tr>
 
