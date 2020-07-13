@@ -1,5 +1,7 @@
 package com.example.demo.models;
 
+import javax.persistence.*;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
 
 import lombok.Setter;
 import lombok.ToString;
@@ -37,13 +40,8 @@ public class Seat {
 	}
 
 	@OneToOne
-	@JoinColumn(name="SE_ID")
-	private Seat seat;
-	
-	
-	
-	
-	
-	
+  @JoinColumn(name="BP_ID")
+  private BoardingPass boardingPass;
+
 	
 }

@@ -1,15 +1,16 @@
 package com.example.demo.models;
 
+import com.example.demo.models.enums.AirportList;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.Min;
-import javax.validation.constraints.Pattern;
+import java.time.LocalDateTime;
 import java.util.Collection;
-import java.util.Date;
 
 @Entity
 @Table(name = "FlightTable")
@@ -25,23 +26,21 @@ public class Flight {
     private int fl_ID;
 
     @Column(name="DateAndTime")
-    // TODO data format validation
-    private Date dateAndTime;
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
+    private LocalDateTime creationDateTime;
 
     @Column(name="Duration")
     @Min(value = 0L, message = "The value must be positive")
     private int duration;
 
     @Column(name="AirportFrom")
-    @Pattern(regexp = "[a-zA-Z\\d\\s]+$", message = "Incorrect input")
-    private String airportFrom;
+    private AirportList airportFrom;
 
     @Column(name="AirportTo")
-    @Pattern(regexp = "[a-zA-Z\\d\\s]+$", message = "Incorrect input")
-    private String airportTo;
+    private AirportList airportTo;
 
-    public Flight(Date dateAndTime, int duration, String airportFrom, String airportTo) {
-        this.dateAndTime = dateAndTime;
+    public Flight(LocalDateTime dateAndTime, int duration, AirportList airportFrom, AirportList airportTo) {
+        this.creationDateTime = dateAndTime;
         this.duration = duration;
         this.airportFrom = airportFrom;
         this.airportTo = airportTo;
