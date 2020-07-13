@@ -1,4 +1,4 @@
-package com.example.demo.services.impl;
+package com.example.demo.service.impl;
 
 public class AirportSystemImpl {
 
