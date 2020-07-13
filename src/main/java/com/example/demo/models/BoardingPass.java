@@ -41,8 +41,5 @@ public class BoardingPass {
 	private Seat seat;
 
 
-	@JoinColumn(name="BP_ID")
-	private BoardingPass boardingPass;
-
 	
 }
