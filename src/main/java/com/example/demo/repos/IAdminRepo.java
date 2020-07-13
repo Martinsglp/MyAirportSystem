@@ -1,11 +1,22 @@
 package com.example.demo.repos;
 
+
+
 import org.springframework.data.repository.CrudRepository;
 
 import com.example.demo.models.Admin;
 
-public interface IAdminRepo extends CrudRepository<Admin, Integer> {
+import com.example.demo.models.RegisteredUser;
 
+public interface IAdminRepo extends CrudRepository<Admin, Integer> {
+	boolean existsByNameAndSurname(String name, String surname);
+
+	boolean existsByPassword(String password);
+	
+	boolean existsByNameAndSurnameAndPassword(String name,String surname, String password);
+
+	RegisteredUser findByNameAndSurname(String name, String surname);
+	
 	
 	
 	
