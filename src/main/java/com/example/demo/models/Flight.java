@@ -26,7 +26,7 @@ public class Flight {
     private int fl_ID;
 
     @Column(name="DateAndTime")
-    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDateTime creationDateTime;
 
     @Column(name="Duration")
