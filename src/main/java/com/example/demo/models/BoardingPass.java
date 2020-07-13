@@ -46,16 +46,15 @@ public class BoardingPass {
 	@JoinColumn(name = "FL_ID")
 	private Flight flight;
 
+	/*
 	@OneToOne
 	@JoinColumn(name="BP_ID")
-	private BoardingPass boardingPass;
+	private BoardingPass boardingPass;*/
 	
 	
 	@OneToOne
 	@JoinColumn(name="SE_ID")
 	private Seat seat;
-	
-	
 	
 
 }
