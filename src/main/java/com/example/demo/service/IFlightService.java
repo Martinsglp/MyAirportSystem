@@ -14,6 +14,12 @@ public interface IFlightService {
 
     void saveTestingData();
 
+	boolean updateFlightById(int id, AirportList airportFrom, AirportList airportTo, Flight flight);
+
+	boolean deleteFlightById(int id);
+
+	boolean updateFlightObjectById(int id, Flight flight);
+
 
 }
 
