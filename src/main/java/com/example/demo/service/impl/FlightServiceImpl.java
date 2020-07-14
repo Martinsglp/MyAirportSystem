@@ -56,4 +56,57 @@ public class FlightServiceImpl implements IFlightService{
         flightRepo.save(f3);
         flightRepo.save(f4);
     }
+   
+    
+	@Override
+	public boolean updateFlightById(int id, AirportList airportFrom, AirportList airportTo, Flight flight) {
+		if(id > 0) {
+			if(flightRepo.existsById(id)) {
+				Flight productToUpdate = flightRepo.findById(id).get();
+				productToUpdate.setAirportFrom(airportFrom);
+				productToUpdate.setAirportTo(airportTo);
+				flightRepo.save(flight);
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	@Override
+	public boolean updateFlightObjectById(int id, Flight flight) {
+		if(flightRepo.existsById(id)) {
+			Flight temp = flightRepo.findById(flight.getFl_ID()).get();
+			temp.setAirportFrom(flight.getAirportFrom());
+			temp.setAirportTo(flight.getAirportTo());
+			temp.setDuration(flight.getDuration());
+			flightRepo.save(temp);
+			return true;
+		}
+		return false;
+	}
+	
+	@Override
+	public boolean deleteFlightById(int id) {
+		if(id > 0) {
+			if(flightRepo.existsById(id)) {
+				flightRepo.deleteById(id);
+				return true;
+			}
+		}
+		return false;
+	}
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 }

@@ -33,5 +33,7 @@ public class AdminController {
                                     flight.getAirportFrom(), flight.getAirportTo(), flight.getFlightPrice());
         return  "redirect:/flight/showAllFlights";
     }
+    
+    
 
 }

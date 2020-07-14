@@ -16,4 +16,7 @@ public interface IFlightRepo extends CrudRepository<Flight, Integer> {
     ArrayList<Flight> existsByAirportFromAndAirportTo(AirportList airportFrom, AirportList airportTo);
 
     ArrayList<BoardingPass> findByBoardingPasses(BoardingPass pass);
+    
+    
+    
 }
