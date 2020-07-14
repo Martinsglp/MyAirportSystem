@@ -1,10 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
+<html xmlns:th="http://www.thymeleaf.org">
 <body>
-    <p> HERE IS AIRPORTS</p>
+<form action="#" th:action="@{/guest/showFlightSelectingPage}" th:object="${flight}" method="post">
+
+    <p> Your selected flights by 'airport from' and 'airport to': </p>
+
+    <table>
+        <tr th:each="flight: ${allFlightsByAirports}">
+            <td th:text="${flight.getFl_ID()}"></td>
+            <td th:text="${flight.getCreationDateTime()}"></td>
+            <td th:text="${flight.getAirportFrom()}"></td>
+            <td th:text="${flight.getAirportTo()}"></td>
+        </tr>
+
+    </table>
+
+
+</form>
 </body>
 </html>

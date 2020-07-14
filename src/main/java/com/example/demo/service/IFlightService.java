@@ -12,5 +12,8 @@ public interface IFlightService {
 
     ArrayList<Flight> showSelectedFlightsInfoByAirports(AirportList airportFrom, AirportList airportTo);
 
+    void saveTestingData();
+
+
 }
 
