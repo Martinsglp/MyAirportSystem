@@ -34,10 +34,12 @@ public class UserController {
     @PostMapping("/showFlightSelectingPage")
     public String postShowFlightSelectingPage(@Valid Flight flight, BindingResult result, Model model) {
         System.out.println(flight.getAirportFrom() + " " + flight.getAirportTo());
-        if (result.hasErrors() || !flightService.checkIfFlightIsInDB(flight)) {
+
+        if (result.hasErrors()  || flight.getAirportFrom().equals(flight.getAirportTo()) || !flightService.checkIfFlightIsInDB(flight)) {
             return "show-flight-selecting-page";
         }
         model.addAttribute("allFlightsByAirports", flightService.showSelectedFlightsInfoByAirports(flight.getAirportFrom(), flight.getAirportTo()));
         return "show-flights-by-airports-page";
     }
+    
 }

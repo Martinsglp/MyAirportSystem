@@ -27,10 +27,6 @@ public class BoardingPass {
 	@Column(name = "Priority")
 	private boolean Priority_Group;
 
-	@Column(name = "Price")
-	private double flightPrice;
-	
-	
 	public BoardingPass(boolean priority_Group) {
 		super();
 		Priority_Group = priority_Group;
@@ -47,7 +43,7 @@ public class BoardingPass {
 
 	@OneToOne
 	@JoinColumn(name="BP_ID")
-	private BoardingPass boardingPass;
+	private BoardingPass boardingPass; // ??????????????????
 	
 	@OneToOne
 	@JoinColumn(name="SE_ID")

@@ -1,20 +1,42 @@
+<!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Show flights by airports</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" type="text/css" href="webjars/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <link rel="stylesheet" th:href="@{/css/main.css}" href="../../css/main.css"/>
+</head>
 <body>
-<form action="#" th:action="@{/guest/showFlightSelectingPage}" th:object="${flight}" method="post">
+    <form action="#" th:action="@{/guest/showFlightSelectingPage}" th:object="${flight}" method="post">
 
-    <p> Your selected flights by 'airport from' and 'airport to': </p>
+        <div>
+            <h3>Your selected flights by Airports: </h3>
+        </div>
 
-    <table>
-        <tr th:each="flight: ${allFlightsByAirports}">
-            <td th:text="${flight.getFl_ID()}"></td>
-            <td th:text="${flight.getCreationDateTime()}"></td>
-            <td th:text="${flight.getAirportFrom()}"></td>
-            <td th:text="${flight.getAirportTo()}"></td>
-        </tr>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Date</th>
+                    <th>Airport from</th>
+                    <th>Airport to</th>
+                    <th>Price</th>
+                </tr>
+            </thead>
 
-    </table>
+            <tbody>
+                <tr th:each="flight: ${allFlightsByAirports}">
+                    <td th:text="${flight.getFl_ID()}"></td>
+                    <td th:text="${flight.getCreationDateTime()}"></td>
+                    <td th:text="${flight.getAirportFrom()}"></td>
+                    <td th:text="${flight.getAirportTo()}"></td>
+                    <td th:text="${flight.getFlightPrice()}"></td>
+                </tr>
+            </tbody>
 
+        </table>
 
-</form>
+    </form>
+<script type="text/javascript" src="webjars/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </body>
 </html>

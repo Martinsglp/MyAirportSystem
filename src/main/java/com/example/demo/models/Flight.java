@@ -9,6 +9,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.Pattern;
 
 import java.time.LocalDateTime;
 import java.util.Collection;
@@ -27,7 +28,7 @@ public class Flight {
     private int fl_ID;
 
     @Column(name="DateAndTime")
-    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     private LocalDateTime creationDateTime;
 
     @Column(name="Duration")
@@ -40,11 +41,16 @@ public class Flight {
     @Column(name="AirportTo")
     private AirportList airportTo;
 
-    public Flight(LocalDateTime dateAndTime, int duration, AirportList airportFrom, AirportList airportTo) {
+    @Column(name = "Price")
+    @Min(value = 0, message = "The value must be positive")
+    private double flightPrice;
+
+    public Flight(LocalDateTime dateAndTime, int duration, AirportList airportFrom, AirportList airportTo, double flightPrice) {
         this.creationDateTime = dateAndTime;
         this.duration = duration;
         this.airportFrom = airportFrom;
         this.airportTo = airportTo;
+        this.flightPrice = flightPrice;
     }
 
     @OneToMany(mappedBy = "flight")

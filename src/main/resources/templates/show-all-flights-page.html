@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Show all flights</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" type="text/css" href="webjars/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <link rel="stylesheet" th:href="@{/css/main.css}" href="../../css/main.css"/>
+</head>
+<body>
+<form action="#" th:action="@{/admin/showAllFlights}" th:object="${flight}" method="post">
+
+    <div>
+        <h3>All registered flights: </h3>
+    </div>
+
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Date</th>
+            <th>Duration</th>
+            <th>Airport from</th>
+            <th>Airport to</th>
+            <th>Price</th>
+        </tr>
+        </thead>
+
+        <tbody>
+            <tr th:each="flight: ${allFlights}">
+                <td th:text="${flight.getFl_ID()}"></td>
+                <td th:text="${flight.getCreationDateTime()}"></td>
+                <td th:text="${flight.getDuration()}"></td>
+                <td th:text="${flight.getAirportFrom()}"></td>
+                <td th:text="${flight.getAirportTo()}"></td>
+                <td th:text="${flight.getFlightPrice()}"></td>
+            </tr>
+        </tbody>
+
+    </table>
+
+</form>
+</body>
+</html>

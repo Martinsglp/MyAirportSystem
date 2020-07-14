@@ -49,7 +49,7 @@ public class User {
 	@Column(name="Email")
 	@Size(min=4, max=30)
 	//@Pattern(regexp = "[a-zA-Z\\s]+$", message = "Check name!")
-	@Pattern(regexp = "[A-Za-z0-9+_.-]+@(.+)$", message = "Check name!") // TODO check email regex
+	@Pattern(regexp = "[A-Za-z0-9+_.-]+@(.+)$", message = "Check name!")
 	private String email;
 
 	public User(@Size(min = 4, max = 30) @Pattern(regexp = "[a-zA-Z\\s]+$", message = "Check name!") String username,
