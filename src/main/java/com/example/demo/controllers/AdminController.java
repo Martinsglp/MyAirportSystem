@@ -30,7 +30,7 @@ public class AdminController {
             return "register-new-flight-page";
         }
         flightService.registerFlight(flight.getCreationDateTime(), flight.getDuration(),
-                                    flight.getAirportFrom(), flight.getAirportTo());
+                                    flight.getAirportFrom(), flight.getAirportTo(), flight.getFlightPrice());
         return  "redirect:/flight/showAllFlights";
     }
 

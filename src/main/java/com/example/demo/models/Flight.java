@@ -38,15 +38,25 @@ public class Flight {
 
     @Column(name="AirportTo")
     private AirportList airportTo;
+    
+    @Column(name = "Price")
+    @Min(value = 0, message = "The value must be positive")
+    private double flightPrice;
+ 
+    public Flight(LocalDateTime creationDateTime, @Min(value = 0, message = "The value must be positive") int duration,
+			AirportList airportFrom, AirportList airportTo,
+			@Min(value = 0, message = "The value must be positive") double flightPrice) {
+		super();
+		this.creationDateTime = creationDateTime;
+		this.duration = duration;
+		this.airportFrom = airportFrom;
+		this.airportTo = airportTo;
+		this.flightPrice = flightPrice;
+	}
 
-    public Flight(LocalDateTime dateAndTime, int duration, AirportList airportFrom, AirportList airportTo) {
-        this.creationDateTime = dateAndTime;
-        this.duration = duration;
-        this.airportFrom = airportFrom;
-        this.airportTo = airportTo;
-    }
 
-    @OneToMany(mappedBy = "flight")
+
+	@OneToMany(mappedBy = "flight")
     private Collection<BoardingPass> boardingPasses;
 
 }
