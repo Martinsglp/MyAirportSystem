@@ -37,7 +37,10 @@ public class AdminController {
         System.out.println(flight.getCreationDateTime());
         flightService.registerFlight(flight.getCreationDateTime(), flight.getDuration(),
                                     flight.getAirportFrom(), flight.getAirportTo(), flight.getFlightPrice());
+
         return  "redirect:/admin/showAllFlights";
     }
+    
+    
 
 }

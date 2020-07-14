@@ -10,6 +10,8 @@ import javax.persistence.*;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.Pattern;
 
+import com.example.demo.models.enums.AirportList;
+
 @Entity
 @Table(name = "AirportTable")
 @Getter
@@ -25,14 +27,17 @@ public class Airport {
 
     @Column(name="AirportName")
     @Pattern(regexp = "[a-zA-Z\\d\\s]+$", message = "Incorrect input")
-    private String airportName;
+    private AirportList name;
 
     @Column(name="Capacity")
     @Min(value = 0L, message = "The value must be positive")
     private int capacity;
 
-    public Airport(String airportName, int capacity) {
-        this.airportName = airportName;
-        this.capacity = capacity;
-    }
+	public Airport(@Pattern(regexp = "[a-zA-Z\\d\\s]+$", message = "Incorrect input") AirportList name,
+			@Min(value = 0, message = "The value must be positive") int capacity) {
+		super();
+		this.name = name;
+		this.capacity = capacity;
+	}
+    
 }

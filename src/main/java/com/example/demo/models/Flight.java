@@ -39,7 +39,7 @@ public class Flight implements Comparable<Flight>{
 
     @Column(name="AirportTo")
     private AirportList airportTo;
-
+  
     @Column(name = "Price")
     @Min(value = 0, message = "The value must be positive")
     private double flightPrice;
@@ -53,6 +53,24 @@ public class Flight implements Comparable<Flight>{
     }
 
     @OneToMany(mappedBy = "flight")
+    
+    @Column(name = "Price")
+    @Min(value = 0, message = "The value must be positive")
+    private double flightPrice;
+ 
+    public Flight(LocalDateTime creationDateTime, @Min(value = 0, message = "The value must be positive") int duration,
+			AirportList airportFrom, AirportList airportTo,
+			@Min(value = 0, message = "The value must be positive") double flightPrice) {
+		super();
+		this.creationDateTime = creationDateTime;
+		this.duration = duration;
+		this.airportFrom = airportFrom;
+		this.airportTo = airportTo;
+		this.flightPrice = flightPrice;
+	}
+
+	@OneToMany(mappedBy = "flight")
+
     private Collection<BoardingPass> boardingPasses;
 
     @Override

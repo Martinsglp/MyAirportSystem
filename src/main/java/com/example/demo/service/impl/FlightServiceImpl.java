@@ -52,7 +52,6 @@ public class FlightServiceImpl implements IFlightService{
         Flight f4 = new Flight(LocalDateTime.now().plusDays(5), 4, AirportList.Daru_Airport, AirportList.Eagle_Airport, 270);
         Flight f5 = new Flight(LocalDateTime.now().plusDays(5), 4, AirportList.Daru_Airport, AirportList.Eagle_Airport, 500);
 
-
         flightRepo.save(f1);
         flightRepo.save(f2);
         flightRepo.save(f3);
@@ -77,4 +76,57 @@ public class FlightServiceImpl implements IFlightService{
         ArrayList<Flight> allFlights = (ArrayList<Flight>)flightRepo.findAll();
         return allFlights;
     }
+   
+    
+	@Override
+	public boolean updateFlightById(int id, AirportList airportFrom, AirportList airportTo, Flight flight) {
+		if(id > 0) {
+			if(flightRepo.existsById(id)) {
+				Flight productToUpdate = flightRepo.findById(id).get();
+				productToUpdate.setAirportFrom(airportFrom);
+				productToUpdate.setAirportTo(airportTo);
+				flightRepo.save(flight);
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	@Override
+	public boolean updateFlightObjectById(int id, Flight flight) {
+		if(flightRepo.existsById(id)) {
+			Flight temp = flightRepo.findById(flight.getFl_ID()).get();
+			temp.setAirportFrom(flight.getAirportFrom());
+			temp.setAirportTo(flight.getAirportTo());
+			temp.setDuration(flight.getDuration());
+			flightRepo.save(temp);
+			return true;
+		}
+		return false;
+	}
+	
+	@Override
+	public boolean deleteFlightById(int id) {
+		if(id > 0) {
+			if(flightRepo.existsById(id)) {
+				flightRepo.deleteById(id);
+				return true;
+			}
+		}
+		return false;
+	}
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 }
