@@ -1,38 +1,40 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <body>
-<form action="#" th:action="@{/admin/registerNewFlight}" th:object="${flight}" method="post">
+    <form action="#" th:action="@{/admin/registerNewFlight}" th:object="${flight}" method="post">
+        <table>
+            <tr>
+                <td> Please insert date: </td>
+                <td> <input type="date" th:field="*{creationDateTime}"> </td>
+                <!--<td th:if="${#fields.hasErrors('creationDateTime')}" th:errors="*{creationDateTime}"></td>-->
+            </tr>
 
-    <table>
-        <tr>
-            <td> Please insert date: </td>
-            <td> <input type="datetime-local" th:field="*{creationDateTime}"> </td>
-            <td th:if="${#fields.hasErrors('creationDateTime')}" th:errors="*{creationDateTime}"></td>
-        </tr>
+            <tr>
+                <td> Please insert duration: </td>
+                <td> <input type="number" min="0" th:field="*{duration}"> </td>
+                <td th:if="${#fields.hasErrors('duration')}" th:errors="*{duration}"></td>
+            </tr>
 
-        <tr>
-            <td> Please insert duration: </td>
-            <td> <input type="text" th:field="*{duration}"> </td>
-            <td th:if="${#fields.hasErrors('duration')}" th:errors="*{duration}"></td>
-        </tr>
-
-        <tr>
-            <td> Please insert AirportFrom: </td>
-            <td> <input type="text" th:field="*{airportFrom}"> </td>
-            <td th:if="${#fields.hasErrors('airportFrom')}" th:errors="*{airportFrom}"></td>
-        </tr>
-
-        <tr>
-            <td> Please insert AirportTo: </td>
-            <td> <input type="text" th:field="*{airportTo}"> </td>
-            <td th:if="${#fields.hasErrors('airportTo')}" th:errors="*{airportTo}"></td>
-        </tr>
-
-        </tr>
+        </table>
 
 
-    </table>
+            <p> Please insert AirportFrom: </p>
+            <select name = "airportFrom">
+                <option th:each="airportFrom : ${T(com.example.demo.models.enums.AirportList).values()}"
+                        th:value = "${airportFrom}" th:text="${airportFrom}">
+                </option>
+            </select>
 
-    <input type="submit">
-</form>
+
+
+            <p> Please insert AirportTo: </p>
+            <select name = "airportTo">
+                <option th:each="airportTo : ${T(com.example.demo.models.enums.AirportList).values()}"
+                        th:value = "${airportTo}" th:text="${airportTo}">
+                </option>
+            </select>
+
+
+        <input type="submit">
+    </form>
 </body>
 </html>
