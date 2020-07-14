@@ -9,7 +9,6 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.Min;
-import javax.validation.constraints.Pattern;
 
 import java.time.LocalDateTime;
 import java.util.Collection;
@@ -20,7 +19,7 @@ import java.util.Collection;
 @Setter
 @ToString
 @NoArgsConstructor
-public class Flight {
+public class Flight implements Comparable<Flight>{
 
     @Id
     @Column(name = "FL_ID")
@@ -46,7 +45,7 @@ public class Flight {
     private double flightPrice;
 
     public Flight(LocalDateTime dateAndTime, int duration, AirportList airportFrom, AirportList airportTo, double flightPrice) {
-        this.creationDateTime = dateAndTime;
+        this.creationDateTime = dateAndTime.withNano(0);
         this.duration = duration;
         this.airportFrom = airportFrom;
         this.airportTo = airportTo;
@@ -56,4 +55,8 @@ public class Flight {
     @OneToMany(mappedBy = "flight")
     private Collection<BoardingPass> boardingPasses;
 
+    @Override
+    public int compareTo(Flight o) {
+        return 0;
+    }
 }

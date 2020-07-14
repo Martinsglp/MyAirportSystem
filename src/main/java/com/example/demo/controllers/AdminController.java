@@ -18,7 +18,6 @@ public class AdminController {
     @Autowired
     IFlightService flightService;
 
-    // TODO function show-all-registered-flights
     @GetMapping("/showAllFlights") // url: localhost:8080/admin/showAllFlights
     public String getShowAllFlights(Model model) {
         model.addAttribute("allFlights", flightService.selectAllFlights());

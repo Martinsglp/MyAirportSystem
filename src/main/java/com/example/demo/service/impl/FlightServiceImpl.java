@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class FlightServiceImpl implements IFlightService{
@@ -27,7 +28,7 @@ public class FlightServiceImpl implements IFlightService{
     }
 
     @Override
-    public ArrayList<Flight> showSelectedFlightsInfoByAirports(AirportList airportFrom, AirportList airportTo) {
+    public List<Flight> showSelectedFlightsInfoByAirports(AirportList airportFrom, AirportList airportTo) {
         ArrayList<Flight> allFlights = (ArrayList<Flight>)flightRepo.findAll();
         ArrayList<Flight> allFlightsByAirportInfo = new ArrayList<>();
 
@@ -49,12 +50,14 @@ public class FlightServiceImpl implements IFlightService{
         Flight f2 = new Flight(LocalDateTime.now().plusDays(3), 2, AirportList.Bella_Coola_Airport, AirportList.Bilaspur_Airport, 300);
         Flight f3 = new Flight(LocalDateTime.now().plusDays(4), 3, AirportList.Carauari_Airport, AirportList.Chennai_International_Airport, 150);
         Flight f4 = new Flight(LocalDateTime.now().plusDays(5), 4, AirportList.Daru_Airport, AirportList.Eagle_Airport, 270);
+        Flight f5 = new Flight(LocalDateTime.now().plusDays(5), 4, AirportList.Daru_Airport, AirportList.Eagle_Airport, 500);
 
 
         flightRepo.save(f1);
         flightRepo.save(f2);
         flightRepo.save(f3);
         flightRepo.save(f4);
+        flightRepo.save(f5);
     }
 
     @Override
