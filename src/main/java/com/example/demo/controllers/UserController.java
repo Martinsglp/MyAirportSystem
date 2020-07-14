@@ -40,4 +40,5 @@ public class UserController {
         model.addAttribute("allFlightsByAirports", flightService.showSelectedFlightsInfoByAirports(flight.getAirportFrom(), flight.getAirportTo()));
         return "show-flights-by-airports-page";
     }
+    
 }
