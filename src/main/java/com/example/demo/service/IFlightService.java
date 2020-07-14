@@ -14,7 +14,9 @@ public interface IFlightService {
 
     void saveTestingData();
 
+
     boolean checkIfFlightIsInDB(Flight flight);
+
 
 }
 
