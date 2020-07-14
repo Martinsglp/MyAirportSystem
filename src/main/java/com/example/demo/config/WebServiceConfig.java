@@ -12,7 +12,7 @@ import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 
 public class WebServiceConfig extends WebSecurityConfigurerAdapter{
 
-	 @Override
+	@Override
         protected UserDetailsService userDetailsService() {
                 InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();
                 
@@ -31,22 +31,29 @@ public class WebServiceConfig extends WebSecurityConfigurerAdapter{
 	
 	
 	
-//	@Override
-//      protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-//              auth.userDetailsService(userDetailsService()).passwordEncoder(passwordEncoder());
-//      }
+	@Override
+      protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+              auth.userDetailsService(userDetailsService()).passwordEncoder(passwordEncoder());
+      }
 	
 	
 	@Override
     protected void configure(HttpSecurity http) throws Exception {
-            http.authorizeRequests()
-            .antMatchers("/h2-console/**").permitAll()
-            .anyRequest().authenticated();
-
+        http.authorizeRequests()
+        .antMatchers("/guest/**").anonymous()
+        
+        .antMatchers("/user/**").hasAnyRole("ADMIN", "USER")
+        .antMatchers("/admin/**").hasRole("ADMIN")
+        .antMatchers("/h2-console/**").hasRole("ADMIN")
+        .anyRequest().authenticated()
+        .and()
+        .formLogin().permitAll()
+        .and()
+        .logout().permitAll();
             
           
-            //http.csrf().disable();
-            //http.headers().frameOptions().disable();
+        http.csrf().disable();
+        http.headers().frameOptions().disable();
                     
     }
 	
