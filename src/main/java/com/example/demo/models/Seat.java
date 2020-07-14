@@ -39,5 +39,4 @@ public class Seat {
 	@OneToOne
 	@JoinColumn(name="BP_ID")
 	private BoardingPass boardingPass;
-
 }
