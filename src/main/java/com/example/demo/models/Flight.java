@@ -1,5 +1,6 @@
 package com.example.demo.models;
 
+import com.example.demo.models.enums.AirportList;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -8,7 +9,6 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.Min;
-import javax.validation.constraints.Pattern;
 import java.time.LocalDateTime;
 import java.util.Collection;
 
@@ -26,7 +26,7 @@ public class Flight {
     private int fl_ID;
 
     @Column(name="DateAndTime")
-    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDateTime creationDateTime;
 
     @Column(name="Duration")
@@ -34,14 +34,12 @@ public class Flight {
     private int duration;
 
     @Column(name="AirportFrom")
-    @Pattern(regexp = "[a-zA-Z\\d\\s]+$", message = "Incorrect input")
-    private String airportFrom;
+    private AirportList airportFrom;
 
     @Column(name="AirportTo")
-    @Pattern(regexp = "[a-zA-Z\\d\\s]+$", message = "Incorrect input")
-    private String airportTo;
+    private AirportList airportTo;
 
-    public Flight(LocalDateTime dateAndTime, int duration, String airportFrom, String airportTo) {
+    public Flight(LocalDateTime dateAndTime, int duration, AirportList airportFrom, AirportList airportTo) {
         this.creationDateTime = dateAndTime;
         this.duration = duration;
         this.airportFrom = airportFrom;

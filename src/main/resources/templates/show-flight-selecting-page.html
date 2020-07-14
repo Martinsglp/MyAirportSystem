@@ -1,0 +1,28 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<form action="#" th:action="@{/guest/showFlightSelectingPage}" th:object="${flight}" method="post">
+
+    <table>
+
+        <tr>
+            <select name = "airportFrom">
+                <option th:each="airportFrom : ${T(com.example.demo.models.enums.AirportList).values()}"
+                        th:value = "${airportFrom}" th:text="${airportFrom}">
+                </option>
+            </select>
+        </tr>
+
+        <tr>
+            <select name = "airportTo">
+                <option th:each="airportTo : ${T(com.example.demo.models.enums.AirportList).values()}"
+                        th:value = "${airportTo}" th:text="${airportTo}">
+                </option>
+            </select>
+        </tr>
+
+    </table>
+
+    <input type="submit">
+</form>
+</body>
+</html>
