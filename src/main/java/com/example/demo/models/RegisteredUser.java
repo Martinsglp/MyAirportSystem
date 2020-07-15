@@ -21,6 +21,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+
 @Entity
 @Table(name = "RegisteredUserTable")
 @Getter @Setter @NoArgsConstructor @ToString
@@ -36,8 +37,10 @@ public class RegisteredUser extends User{
 	@Max(100)
 	private int Extra_points;
 	
-	@Column(name="IsVIP")
-	private boolean isVIP;
+	/*@Id
+	@Column(name = "ROLE_ID")
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private int role_ID;*/
 
 	@Column(name = "Type")
 	private userType type;
@@ -46,24 +49,19 @@ public class RegisteredUser extends User{
 		Extra_points = extra_points;
 		this.type = type;
 	}
-	
-	public RegisteredUser(
-			@Size(min = 4, max = 30) @Pattern(regexp = "[a-zA-Z\\s]+$", message = "Check name!") String username,
-			@Size(min = 3, max = 30) String password,
-			@Size(min = 3, max = 30) @Pattern(regexp = "[a-zA-Z\\s]+$", message = "Check name!") String name,
-			@Size(min = 3, max = 30) @Pattern(regexp = "[a-zA-Z\\s]+$", message = "Check name!") String surname,
-			@Size(min = 4, max = 30) @Pattern(regexp = "[A-Za-z0-9+_.-]+@(.+)$", message = "Check name!") String email,
-			@Min(0) @Max(100) int extra_points, boolean isVIP, userType type) {
+
+	public RegisteredUser(@Size(min = 4, max = 30) @Pattern(regexp = "[a-zA-Z\\s]+$", message = "Check name!") String username,
+						  @Size(min = 3, max = 30) String password,
+						  @Size(min = 3, max = 30) @Pattern(regexp = "[a-zA-Z\\s]+$", message = "Check name!") String name,
+						  @Size(min = 3, max = 30) @Pattern(regexp = "[a-zA-Z\\s]+$", message = "Check name!") String surname,
+						  @Size(min = 4, max = 30) @Pattern(regexp = "[A-Za-z0-9+_.-]+@(.+)$", message = "Check name!") String email,
+						  int extra_points, userType type) {
 		super(username, password, name, surname, email);
 		Extra_points = extra_points;
-		this.isVIP = isVIP;
 		this.type = type;
 	}
-	
-	
 
+	@ToString.Exclude
 	@OneToMany(mappedBy = "registeredUser")
 	private Collection<BoardingPass> boardingPasses;
-
-	
 }

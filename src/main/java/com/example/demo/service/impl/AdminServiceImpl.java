@@ -3,18 +3,20 @@ package com.example.demo.service.impl;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import com.example.demo.models.Admin;
 import com.example.demo.models.BoardingPass;
 import com.example.demo.models.Flight;
 import com.example.demo.models.RegisteredUser;
+import com.example.demo.models.VIPUser;
 import com.example.demo.models.enums.userType;
 import com.example.demo.repos.IAdminRepo;
 import com.example.demo.repos.IBoardingPassRepo;
 import com.example.demo.repos.IFlightRepo;
 import com.example.demo.repos.IRegisteredUserRepo;
+import com.example.demo.repos.IVIPUserRepo;
 import com.example.demo.service.IAdminService;
+import org.springframework.stereotype.Service;
 
 @Service
 public class AdminServiceImpl implements IAdminService{
@@ -27,6 +29,9 @@ public class AdminServiceImpl implements IAdminService{
 	
 	@Autowired
 	IRegisteredUserRepo registRepo;
+	
+	@Autowired
+	IVIPUserRepo vipRepo;
 	
 	@Autowired
 	IBoardingPassRepo boardRepo;
@@ -64,6 +69,11 @@ public class AdminServiceImpl implements IAdminService{
 	}
 
 	@Override
+	public ArrayList<VIPUser> selectAllVIPUsers() {
+		return (ArrayList<VIPUser>) vipRepo.findAll();
+	}
+
+	@Override
 	public boolean deleteFlightById(int id) {
 		if(id > 0) {
 			if(flightRepo.existsById(id));
@@ -73,13 +83,6 @@ public class AdminServiceImpl implements IAdminService{
 		return false;
 	}
 
-	@Override
-	public ArrayList<RegisteredUser> selectAllVipRegisteredUsers() {
-		return registRepo.findByType(userType.VIP);
-	}
-	
-	
-	
-	
-	
+
+
 }
