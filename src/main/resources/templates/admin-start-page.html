@@ -9,21 +9,22 @@
 <body>
 
     <div>
-        <h2>Hello in our page! </h2>
         <h3>Choose you action: </h3>
     </div>
 
-    <form action="/guest/showFlightSelectingPage">
-        <input type="submit" value="Search flights" />
+    <form action="/admin/showAllFlights">
+    <input type="submit" value="Show all flights" />
     </form>
 
-    <form action="/admin">
-        <input type="submit" value="Log in as admin" />
+    <form action="/admin/registerNewFlight">
+        <input type="submit" value="Register new flight" />
     </form>
 
-    <!--<form action=" ">-->
-    <!--<input type="submit" value="Another action" />-->
-    <!--</form>-->
+    <form action="/admin/showStatistics">
+        <input type="submit" value="Show flight statistics by dates" />
+    </form>
+
+
 
 </body>
 </html>

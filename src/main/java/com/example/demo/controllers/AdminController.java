@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 
@@ -25,6 +24,11 @@ public class AdminController {
 
     @Autowired
     IFlightService flightService;
+
+    @GetMapping("") // url: localhost:8080/admin
+    public String showAdminStartPage() {
+        return "admin-start-page";
+    }
 
     @GetMapping("/showAllFlights") // url: localhost:8080/admin/showAllFlights
     public String getShowAllFlights(Model model) {
@@ -58,7 +62,6 @@ public class AdminController {
         model.addAttribute("allFlights", adminService.selectAllFlights());
         model.addAttribute("statisticsForm", new StatisticsForm());
         List<Flight> allFlightsByDates = flightService.getAllFlightsByDate(statisticsForm.getCreationDateTime());
-
         model.addAttribute("statistics", allFlightsByDates);
         return "show-statistics-page";
     }
