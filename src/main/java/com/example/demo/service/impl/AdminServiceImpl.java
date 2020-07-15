@@ -16,7 +16,9 @@ import com.example.demo.repos.IFlightRepo;
 import com.example.demo.repos.IRegisteredUserRepo;
 import com.example.demo.repos.IVIPUserRepo;
 import com.example.demo.service.IAdminService;
+import org.springframework.stereotype.Service;
 
+@Service
 public class AdminServiceImpl implements IAdminService{
 
 	@Autowired
@@ -80,5 +82,7 @@ public class AdminServiceImpl implements IAdminService{
 		}
 		return false;
 	}
+
+
 
 }

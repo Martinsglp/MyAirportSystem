@@ -29,7 +29,6 @@ public class UserController {
     @GetMapping("/saveTestingData")
     public String getSaveTestingData() {
         System.out.println("saveTestingData");
-//        flightService.saveTestingData();
         airportService.testModelLayer();
         return "hello-page";
     }

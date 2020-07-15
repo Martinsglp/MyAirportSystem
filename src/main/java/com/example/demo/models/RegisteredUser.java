@@ -21,6 +21,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+
 @Entity
 @Table(name = "RegisteredUserTable")
 @Getter @Setter @NoArgsConstructor @ToString
@@ -60,7 +61,7 @@ public class RegisteredUser extends User{
 		this.type = type;
 	}
 
+	@ToString.Exclude
 	@OneToMany(mappedBy = "registeredUser")
 	private Collection<BoardingPass> boardingPasses;
-	
 }

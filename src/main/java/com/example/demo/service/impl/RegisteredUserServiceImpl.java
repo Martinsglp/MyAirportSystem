@@ -2,19 +2,18 @@ package com.example.demo.service.impl;
 
 import java.util.ArrayList;
 
-import javax.persistence.Id;
-
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.example.demo.models.BoardingPass;
-import com.example.demo.models.Flight;
 import com.example.demo.models.RegisteredUser;
 import com.example.demo.models.enums.userType;
 import com.example.demo.repos.IBoardingPassRepo;
 import com.example.demo.repos.IFlightRepo;
 import com.example.demo.repos.IRegisteredUserRepo;
 import com.example.demo.service.IRegisterService;
+import org.springframework.stereotype.Service;
 
+@Service
 public class RegisteredUserServiceImpl implements IRegisterService{
 
 	@Autowired
