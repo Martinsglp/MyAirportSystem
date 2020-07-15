@@ -2,7 +2,6 @@ package com.example.demo.controllers;
 
 import com.example.demo.models.Flight;
 import com.example.demo.service.IFlightService;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

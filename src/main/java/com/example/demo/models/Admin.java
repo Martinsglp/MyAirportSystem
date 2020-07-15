@@ -1,17 +1,12 @@
 package com.example.demo.models;
 
 import java.io.Serializable;
-import java.util.Collection;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.MapsId;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
@@ -36,16 +31,17 @@ public class Admin extends User implements Serializable{
 	@Column(name = "Type")
 	private userType type;
 
-	public Admin(@Size(min = 4, max = 30) @Pattern(regexp = "[a-zA-Z\\s]+$", message = "Check name!") String username,
-			@Size(min = 6, max = 30) @Pattern(regexp = "[a-zA-Z\\s]+$", message = "Check name!") String password,
-			@Size(min = 4, max = 30) @Pattern(regexp = "[a-zA-Z\\s]+$", message = "Check name!") String name,
-			@Size(min = 4, max = 30) @Pattern(regexp = "[a-zA-Z\\s]+$", message = "Check name!") String surname,
-			@Size(min = 4, max = 30) @Pattern(regexp = "[a-zA-Z\\s]+$", message = "Check name!") String email,
-			userType type) {
-		super(username, password, name, surname, email);
+	public Admin(userType type) {
 		this.type = type;
 	}
 
-	
-	
+	public Admin(@Size(min = 4, max = 30) @Pattern(regexp = "[a-zA-Z\\s]+$", message = "Check name!") String username,
+				 @Size(min = 3, max = 30) String password,
+				 @Size(min = 3, max = 30) @Pattern(regexp = "[a-zA-Z\\s]+$", message = "Check name!") String name,
+				 @Size(min = 3, max = 30) @Pattern(regexp = "[a-zA-Z\\s]+$", message = "Check name!") String surname,
+				 @Size(min = 4, max = 30) @Pattern(regexp = "[A-Za-z0-9+_.-]+@(.+)$", message = "Check name!") String email,
+				 userType type) {
+		super(username, password, name, surname, email);
+		this.type = type;
+	}
 }

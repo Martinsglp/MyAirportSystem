@@ -6,7 +6,6 @@ import com.example.demo.models.Admin;
 import com.example.demo.models.BoardingPass;
 import com.example.demo.models.Flight;
 import com.example.demo.models.RegisteredUser;
-import com.example.demo.models.User;
 import com.example.demo.models.VIPUser;
 import com.example.demo.models.enums.userType;
 
