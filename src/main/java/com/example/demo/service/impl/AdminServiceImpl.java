@@ -3,6 +3,7 @@ package com.example.demo.service.impl;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.example.demo.models.Admin;
 import com.example.demo.models.BoardingPass;
@@ -17,6 +18,7 @@ import com.example.demo.repos.IRegisteredUserRepo;
 import com.example.demo.repos.IVIPUserRepo;
 import com.example.demo.service.IAdminService;
 
+@Service
 public class AdminServiceImpl implements IAdminService{
 
 	@Autowired
@@ -79,6 +81,19 @@ public class AdminServiceImpl implements IAdminService{
 			return true;
 		}
 		return false;
+	}
+
+	
+	
+	@Override
+	public boolean insertNewVipByObject(VIPUser vipuser) {
+		if(vipRepo.existsByUsername(vipuser.getUsername())) {
+			return false;
+		}
+		VIPUser newVip = new VIPUser(vipuser.getUsername(), vipuser.getPassword(), vipuser.getName(), vipuser.getSurname(), vipuser.getEmail(), true, vipuser.getType());
+		vipRepo.save(newVip);
+		
+		return true;
 	}
 
 }

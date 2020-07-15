@@ -25,6 +25,9 @@ public interface IAdminService {
 	
 	boolean deleteFlightById(int id);
 	
+	//INSERT
+	boolean insertNewVipByObject(VIPUser vipuser);
+	
 	//boolean updateFlightById(int id, Date date, int duration,);
 	//TODO write update shit...
 }
