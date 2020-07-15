@@ -1,7 +1,6 @@
 package com.example.demo.controllers;
 
 import com.example.demo.models.Flight;
-import com.example.demo.service.IAirportService;
 import com.example.demo.service.IFlightService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,6 +11,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.validation.Valid;
+import java.util.Comparator;
+import java.util.List;
 
 @Controller
 @RequestMapping("/guest")
@@ -19,16 +20,12 @@ public class UserController {
 
     @Autowired
     IFlightService flightService;
-    
-    @Autowired
-    IAirportService airportService;
 
     @GetMapping("/saveTestingData")
     public String getSaveTestingData() {
         System.out.println("saveTestingData");
-        //flightService.saveTestingData();
-        airportService.testModelLayer();
-        return "show-flight-selecting-page";
+        flightService.saveTestingData();
+        return "hello-page";
     }
 
     @GetMapping("/showFlightSelectingPage") // url: localhost:8080/guest/showFlightSelectingPage
@@ -39,10 +36,13 @@ public class UserController {
     @PostMapping("/showFlightSelectingPage")
     public String postShowFlightSelectingPage(@Valid Flight flight, BindingResult result, Model model) {
         System.out.println(flight.getAirportFrom() + " " + flight.getAirportTo());
-        if (result.hasErrors()) {
+
+        if (result.hasErrors()  || flight.getAirportFrom().equals(flight.getAirportTo()) || !flightService.checkIfFlightIsInDB(flight)) {
             return "show-flight-selecting-page";
         }
-        model.addAttribute("allFlightsByAirports", flightService.showSelectedFlightsInfoByAirports(flight.getAirportFrom(), flight.getAirportTo()));
+        List<Flight> selectedFlightsAL = flightService.showSelectedFlightsInfoByAirports(flight.getAirportFrom(), flight.getAirportTo());
+        model.addAttribute("allFlightsByAirports", selectedFlightsAL);
+        model.addAttribute("byFlightPrice", Comparator.comparing(Flight::getFlightPrice));
         return "show-flights-by-airports-page";
     }
     

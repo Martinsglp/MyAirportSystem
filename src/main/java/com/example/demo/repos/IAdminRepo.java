@@ -18,9 +18,5 @@ public interface IAdminRepo extends CrudRepository<Admin, Integer> {
 	boolean existsByUsernameAndPassword(String username, String password);
 	
 	RegisteredUser findByNameAndSurname(String name, String surname);
-	
-	
-	
-	
-	
+
 }

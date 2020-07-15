@@ -1,28 +1,41 @@
+<!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Flight selecting</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" type="text/css" href="webjars/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <link rel="stylesheet" th:href="@{/css/main.css}" href="../../css/main.css"/>
+</head>
 <body>
-<form action="#" th:action="@{/guest/showFlightSelectingPage}" th:object="${flight}" method="post">
+    <div>
+        <h3>Select airports: </h3>
+    </div>
 
-    <table>
+    <form action="#" th:action="@{/guest/showFlightSelectingPage}" th:object="${flight}" method="post">
 
-        <tr>
-            <select name = "airportFrom">
-                <option th:each="airportFrom : ${T(com.example.demo.models.enums.AirportList).values()}"
-                        th:value = "${airportFrom}" th:text="${airportFrom}">
-                </option>
-            </select>
-        </tr>
+        <table class="table table-bordered">
 
-        <tr>
-            <select name = "airportTo">
-                <option th:each="airportTo : ${T(com.example.demo.models.enums.AirportList).values()}"
-                        th:value = "${airportTo}" th:text="${airportTo}">
-                </option>
-            </select>
-        </tr>
+            <tr>
+                <label >Select airport FROM</label>
+                <select name = "airportFrom">
+                    <option th:each="airportFrom : ${T(com.example.demo.models.enums.AirportList).values()}"
+                            th:value = "${airportFrom}" th:text="${airportFrom}">
+                    </option>
+                </select>
+            </tr>
 
-    </table>
 
-    <input type="submit">
-</form>
+            <tr>
+                <label >Select airport TO</label>
+                <select name = "airportTo">
+                    <option th:each="airportTo : ${T(com.example.demo.models.enums.AirportList).values()}"
+                            th:value = "${airportTo}" th:text="${airportTo}">
+                    </option>
+                </select>
+            </tr>
+        </table>
+
+        <input type="submit">
+    </form>
 </body>
 </html>
