@@ -3,6 +3,7 @@ package com.example.demo.service.impl;
 import java.time.LocalDateTime;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.example.demo.models.Admin;
 import com.example.demo.models.Airport;
@@ -21,6 +22,7 @@ import com.example.demo.repos.ISeatRepo;
 import com.example.demo.repos.IVIPUserRepo;
 import com.example.demo.service.IAirportService;
 
+@Service
 public class AirportServiceImpl implements IAirportService{
 
 	@Autowired
@@ -49,8 +51,8 @@ public class AirportServiceImpl implements IAirportService{
 	@Override
 	public void testModelLayer() {
 		
-		Admin a1 = new Admin("Patriots", "123", "Janis", "Laivinieks", "laivinieks@gmail.com", userType.ADMIN);
-		Admin a2 = new Admin("Stiprinieks", "123", "Peteris", "Celajs", "pcelajs@gmail.com", userType.ADMIN);
+		Admin a1 = new Admin("Patriots", "123456", "Janis", "Laivinieks", "laivinieks@gmail.com", userType.ADMIN);
+		Admin a2 = new Admin("Stiprinieks", "123456", "Peteris", "Celajs", "pcelajs@gmail.com", userType.ADMIN);
 		adminRepo.save(a1);
 		adminRepo.save(a2);
 		

@@ -1,6 +1,7 @@
 package com.example.demo.controllers;
 
 import com.example.demo.models.Flight;
+import com.example.demo.service.IAirportService;
 import com.example.demo.service.IFlightService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,11 +19,15 @@ public class UserController {
 
     @Autowired
     IFlightService flightService;
+    
+    @Autowired
+    IAirportService airportService;
 
     @GetMapping("/saveTestingData")
     public String getSaveTestingData() {
         System.out.println("saveTestingData");
-        flightService.saveTestingData();
+        //flightService.saveTestingData();
+        airportService.testModelLayer();
         return "show-flight-selecting-page";
     }
 

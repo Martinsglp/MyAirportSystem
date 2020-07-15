@@ -1,6 +1,7 @@
 package com.example.demo.controllers;
 
 import com.example.demo.models.Flight;
+import com.example.demo.service.IAirportService;
 import com.example.demo.service.IFlightService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,9 @@ public class AdminController {
 
     @Autowired
     IFlightService flightService;
+    
+    @Autowired
+    IAirportService airportService;
 
     @GetMapping("/registerNewFlight") // url: localhost:8080/admin/registerNewFlight
     public String getRegisterNewFlight (Flight flight) {
