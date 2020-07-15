@@ -90,11 +90,6 @@ public class AirportServiceImpl implements IAirportService{
 		regRepo.save(ru3);
 		regRepo.save(ru4);
 
-		VIPUser vip1 = new VIPUser("dzelzinieks", "123", "Toms", "Plavinieks", "Plavinieks@inbox.lv", false, userType.VIP);
-		VIPUser vip2 = new VIPUser("dizais", "123", "Davis", "Gaisredzis", "gaishais@gmail.com", true, userType.VIP);
-		vipRepo.save(vip1);
-		vipRepo.save(vip2);
-
 		Seat s1 = new Seat('A', (short)14);
 		Seat s2 = new Seat('A', (short)11);
 		Seat s3 = new Seat('F', (short)20);

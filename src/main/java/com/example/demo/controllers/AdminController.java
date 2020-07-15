@@ -32,9 +32,6 @@ import java.util.List;
 public class AdminController {
 
     @Autowired
-    IAdminService adminService;
-
-    @Autowired
     IFlightService flightService;
     
     @Autowired
