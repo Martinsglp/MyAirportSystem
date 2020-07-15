@@ -26,8 +26,8 @@ public class UserController {
     IAirportService airportService;
 
 
-    @GetMapping("/saveTestingData")
-    public String getSaveTestingData() {
+    @GetMapping("")
+    public String getHelloPage() {
         System.out.println("saveTestingData");
         airportService.testModelLayer();
         return "hello-page";
