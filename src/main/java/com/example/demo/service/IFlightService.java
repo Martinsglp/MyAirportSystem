@@ -24,5 +24,7 @@ public interface IFlightService {
 	  boolean updateFlightObjectById(int id, Flight flight);
 
     ArrayList<Flight> selectAllFlights();
+
+	Flight selectOneFlightById(int id) throws Exception;
 }
 

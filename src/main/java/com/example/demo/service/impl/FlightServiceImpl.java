@@ -17,6 +17,16 @@ public class FlightServiceImpl implements IFlightService{
 
     @Autowired
     IFlightRepo flightRepo;
+    
+    @Override
+	public Flight selectOneFlightById(int id) throws Exception {
+		if(id > 0) {
+			if(flightRepo.existsById(id)) {
+				return flightRepo.findById(id).get();
+			}
+		}
+		throw new Exception("Id not valid!");
+	}
 
     @Override
     public boolean registerFlight(LocalDateTime creationDateTime, int duration, AirportList airportFrom, AirportList airportTo, double flightPrice) {

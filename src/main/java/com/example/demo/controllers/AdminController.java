@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -40,6 +41,52 @@ public class AdminController {
         return  "redirect:/admin/showAllFlights";
     }
     
+    @GetMapping("/updateFlight/{id}")
+	public String getUpdate(@PathVariable(name = "id")int id, Model model, Flight flight) {
+		try {
+			Flight flightForUpdate = flightService.selectOneFlightById(id);
+			model.addAttribute("product", flightForUpdate);
+			return "update-one-flight-page";
+		} catch (Exception e) {
+			return "error";
+		}
+	}    
     
-
+    @PostMapping("/updateFlight/{id}")
+	public String postUpdate(@PathVariable(name = "id") int id, Flight product/*, BindingResult result*/) {
+		System.out.println(product);
+		/*
+		if(result.hasErrors()) {
+			return "update-one-product-page";
+		}*/
+		flightService.updateFlightObjectById(id, product);
+		return "redirect:/admin/showAllFlights";
+	}
+    
+    @GetMapping("/deleteFlight/{id}")
+	public String getDelete(@PathVariable(name = "id")int id, Model model) {
+		if(flightService.deleteFlightById(id)) {
+			model.addAttribute("innerObject", flightService.selectAllFlights());
+			return "show-all-flights-page";
+		}
+		return "error";
+	}
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 }
