@@ -1,10 +1,11 @@
 package com.example.demo.controllers;
 
 import com.example.demo.models.Flight;
-import com.example.demo.models.VIPUser;
+import com.example.demo.models.RegisteredUser;
 import com.example.demo.service.IAdminService;
 import com.example.demo.service.IAirportService;
 import com.example.demo.service.IFlightService;
+import com.example.demo.service.IRegisterService;
 
 import javax.validation.Valid;
 
@@ -29,12 +30,22 @@ public class AdminController {
     
     @Autowired
     IAdminService adminService;
+    
+    @Autowired
+    IRegisterService regService;
 
     @GetMapping("/showAllFlights") // url: localhost:8080/admin/showAllFlights
     public String getShowAllFlights(Model model) {
         model.addAttribute("allFlights", flightService.selectAllFlights());
         return "show-all-flights-page";
     }
+    
+    @GetMapping("/showAllUsers")
+    public String getShowAllUsers(Model model) {
+    	model.addAttribute("allRegisteredUsers", adminService.selectAllRegisteredUsers());
+    	return "show-all-users-page";
+    }
+    
 
     @GetMapping("/registerNewFlight") // url: localhost:8080/admin/registerNewFlight
     public String getRegisterNewFlight (Flight flight) {
@@ -52,20 +63,14 @@ public class AdminController {
 
         return  "redirect:/admin/showAllFlights";
     }
+
     
-    @GetMapping("/registerNewVip")
-    public String getRegisterNewVip(VIPUser vipuser) {
-    	return "register-new-vip-page";
-    }
-    
-    @PostMapping("/registerNewVip")
-    public String postRegisterNewVip(@Valid VIPUser vipuser, BindingResult result) {
-    	System.out.println(vipuser);
-    	if(result.hasErrors()) {
-    		return "register-new-vip-page";
-    	}
-    	adminService.insertNewVipByObject(vipuser);
-    	return "redirect:/admin/showAllUsers";
+    @GetMapping("/checkIfVip")
+    public String getCheckIfVip(Model model) {
+    	regService.checkIfUserIsViP(adminService.selectAllRegisteredUsers());
+    	
+    	model.addAttribute("allRegisteredUsers", adminService.selectAllVipRegisteredUsers());
+    	return "show-all-users-page";
     }
     
     

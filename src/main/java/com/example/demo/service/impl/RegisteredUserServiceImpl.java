@@ -1,10 +1,12 @@
 package com.example.demo.service.impl;
 
 import java.util.ArrayList;
+import java.util.Collection;
 
 import javax.persistence.Id;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.example.demo.models.BoardingPass;
 import com.example.demo.models.Flight;
@@ -15,6 +17,7 @@ import com.example.demo.repos.IFlightRepo;
 import com.example.demo.repos.IRegisteredUserRepo;
 import com.example.demo.service.IRegisterService;
 
+@Service
 public class RegisteredUserServiceImpl implements IRegisterService{
 
 	@Autowired
@@ -29,7 +32,7 @@ public class RegisteredUserServiceImpl implements IRegisterService{
 	@Override
 	public boolean registerRegUser(String username, String password, String name, String surname, String email, userType type) {
 		if(regRepo.existsByNameAndSurnameAndPassword(name, surname, password)) {
-			regRepo.save(new RegisteredUser(username, password, name, surname, email, 0, type));
+			regRepo.save(new RegisteredUser(username, password, name, surname, email, 0, false, type));
 			return true;
 		}
 		return false;
@@ -54,6 +57,24 @@ public class RegisteredUserServiceImpl implements IRegisterService{
 		}
 		throw new Exception("BoardingPass not found!!");
 	}
+
+	@Override
+	public boolean checkIfUserIsViP(Collection<RegisteredUser> registeredUsers) {
+		int minimumReq = 40;
+
+		for(RegisteredUser reg : registeredUsers) {
+			RegisteredUser temp = regRepo.findByUsername(reg.getUsername());
+			if(temp.getExtra_points() >= minimumReq){
+				temp.setType(userType.VIP);
+				temp.setVIP(true);
+				regRepo.save(temp);
+				return true;
+			}
+		}
+		return false;
+	}
+
+	
 
 
 	

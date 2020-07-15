@@ -10,7 +10,6 @@ import com.example.demo.models.Airport;
 import com.example.demo.models.BoardingPass;
 import com.example.demo.models.Flight;
 import com.example.demo.models.RegisteredUser;
-import com.example.demo.models.VIPUser;
 import com.example.demo.models.enums.AirportList;
 import com.example.demo.models.enums.userType;
 import com.example.demo.repos.IAdminRepo;
@@ -19,7 +18,6 @@ import com.example.demo.repos.IBoardingPassRepo;
 import com.example.demo.repos.IFlightRepo;
 import com.example.demo.repos.IRegisteredUserRepo;
 import com.example.demo.repos.ISeatRepo;
-import com.example.demo.repos.IVIPUserRepo;
 import com.example.demo.service.IAirportService;
 import org.springframework.stereotype.Service;
 
@@ -40,9 +38,6 @@ public class AirportServiceImpl implements IAirportService{
 	
 	@Autowired
 	ISeatRepo seatRepo;
-	
-	@Autowired
-	IVIPUserRepo vipRepo;
 	
 	@Autowired
 	IAirportRepo airportRepo;
@@ -78,15 +73,16 @@ public class AirportServiceImpl implements IAirportService{
 		flightRepo.save(f3);
 		flightRepo.save(f4);
 		
-		RegisteredUser ru1 = new RegisteredUser("Batuts", "123", "Valdis", "Bertrups", "bertrupsvaldis@inbox.lv", 15, userType.USER);
-		RegisteredUser ru2 = new RegisteredUser("Bosiks", "123", "Tjomka", "Lidotajs", "tjomkal@inbox.lv", 0, userType.USER);
+		RegisteredUser ru1 = new RegisteredUser("Batuts", "123", "Valdis", "Bertrups", "bertrupsvaldsi@inbox.lv", 40, false, userType.USER);
+		RegisteredUser ru2 = new RegisteredUser("Bosiks", "123", "Tjomka", "Lidotajs", "tjomkal@inbox.lv", 0, false, userType.USER);
+		RegisteredUser ru3 = new RegisteredUser("Vaditajs", "123", "Arciks", "Smagais", "smagaisVaditajs@transport.com", 50, true, userType.VIP);
+		RegisteredUser ru4 = new RegisteredUser("Laivinieks", "123", "Didzis", "Dadzis", "dadzitis@gmail.com", 0, false, userType.USER);
+		
 		regRepo.save(ru1);
 		regRepo.save(ru2);
+		regRepo.save(ru3);
+		regRepo.save(ru4);
 		
-		VIPUser vip1 = new VIPUser("dzelzinieks", "123", "Toms", "Plavinieks", "Plavinieks@inbox.lv", false, userType.VIP);
-		VIPUser vip2 = new VIPUser("dizais", "123", "Davis", "Gaisredzis", "gaishais@gmail.com", true, userType.VIP);
-		vipRepo.save(vip1);
-		vipRepo.save(vip2);
 	}
 
 }
