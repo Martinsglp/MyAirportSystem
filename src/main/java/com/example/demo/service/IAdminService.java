@@ -29,4 +29,6 @@ public interface IAdminService {
 	
 	//boolean updateFlightById(int id, Date date, int duration,);
 	//TODO write update shit...
+
+
 }

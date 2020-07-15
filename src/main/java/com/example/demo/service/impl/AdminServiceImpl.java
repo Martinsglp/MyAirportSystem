@@ -15,6 +15,7 @@ import com.example.demo.repos.IBoardingPassRepo;
 import com.example.demo.repos.IFlightRepo;
 import com.example.demo.repos.IRegisteredUserRepo;
 import com.example.demo.service.IAdminService;
+import org.springframework.stereotype.Service;
 
 @Service
 public class AdminServiceImpl implements IAdminService{
@@ -72,14 +73,10 @@ public class AdminServiceImpl implements IAdminService{
 		}
 		return false;
 	}
-
+  
 	@Override
 	public ArrayList<RegisteredUser> selectAllVipRegisteredUsers() {
 		return registRepo.findByType(userType.VIP);
 	}
-	
-	
-	
-	
 	
 }

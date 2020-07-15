@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Flight statistics</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" type="text/css" href="webjars/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <link rel="stylesheet" th:href="@{/css/main.css}" href="../../css/main.css"/>
+</head>
+<body>
+<div>
+    <h3>Statistics related to flights </h3>
+
+    <form action="#" th:action="@{/admin/showStatistics}" th:object="${statisticsForm}" method="post">
+
+        <div class="form-group row">
+            <label class="col-sm-3 col-sm-offset-1 col-form-label">Choose date: </label>
+            <div class="col-sm-4">
+                <td>
+                <input type="datetime-local" th:field="*{creationDateTime}"/>
+                </td>
+            </div>
+
+        <input class="buttons" type="submit" value="Show results"/>
+        </div>
+    </form>
+
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Chosen date</th>
+                <th>Airport from</th>
+                <th>Airport to</th>
+                <th>Passenger count</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="date : ${statistics}">
+                <td th:text="${date.getCreationDateTime()}">10-10-2020</td>
+                <td th:text="${date.getAirportFrom()}">RIX</td>
+                <td th:text="${date.getAirportTo()}">AAA</td>
+                <td th:text="${date.getBoardingPasses().size()}">10-10-2020</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="backButton">
+        <a class="buttons" href="/admin/showStatistics" role="button">BACK</a>
+    </div>
+
+</div>
+</body>
+</html>

@@ -1,9 +1,13 @@
 package com.example.demo.service.impl;
 
 import java.time.LocalDateTime;
+import java.util.Collection;
+import java.util.HashSet;
 
+import com.example.demo.models.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 
 import com.example.demo.models.Admin;
 import com.example.demo.models.Airport;
@@ -58,10 +62,12 @@ public class AirportServiceImpl implements IAirportService{
 		airportRepo.save(ap2);
 		//TODO huh?
 		
-		BoardingPass bp1 = new BoardingPass(false);
-		BoardingPass bp2 = new BoardingPass(true);
-		boardRepo.save(bp1);
-		boardRepo.save(bp2);
+//		BoardingPass bp1 = new BoardingPass(false);
+//		BoardingPass bp2 = new BoardingPass(true);
+//		BoardingPass bp3 = new BoardingPass(true);
+//		boardRepo.save(bp1);
+//		boardRepo.save(bp2);
+//		boardRepo.save(bp3);
 
 		Flight f1 = new Flight(LocalDateTime.now().plusDays(1), 1, AirportList.Anahim_Lake_Airport, AirportList.Bilaspur_Airport, 222);
 		Flight f2 = new Flight(LocalDateTime.now().plusDays(3), 5, AirportList.Carauari_Airport, AirportList.Daru_Airport, 190);
@@ -73,6 +79,7 @@ public class AirportServiceImpl implements IAirportService{
 		flightRepo.save(f3);
 		flightRepo.save(f4);
 		
+
 		RegisteredUser ru1 = new RegisteredUser("Batuts", "123", "Valdis", "Bertrups", "bertrupsvaldsi@inbox.lv", 40, false, userType.USER);
 		RegisteredUser ru2 = new RegisteredUser("Bosiks", "123", "Tjomka", "Lidotajs", "tjomkal@inbox.lv", 0, false, userType.USER);
 		RegisteredUser ru3 = new RegisteredUser("Vaditajs", "123", "Arciks", "Smagais", "smagaisVaditajs@transport.com", 50, true, userType.VIP);
@@ -82,7 +89,36 @@ public class AirportServiceImpl implements IAirportService{
 		regRepo.save(ru2);
 		regRepo.save(ru3);
 		regRepo.save(ru4);
-		
+
+		VIPUser vip1 = new VIPUser("dzelzinieks", "123", "Toms", "Plavinieks", "Plavinieks@inbox.lv", false, userType.VIP);
+		VIPUser vip2 = new VIPUser("dizais", "123", "Davis", "Gaisredzis", "gaishais@gmail.com", true, userType.VIP);
+		vipRepo.save(vip1);
+		vipRepo.save(vip2);
+
+		Seat s1 = new Seat('A', (short)14);
+		Seat s2 = new Seat('A', (short)11);
+		Seat s3 = new Seat('F', (short)20);
+		Seat s4 = new Seat('D', (short)45);
+
+		seatRepo.save(s1);
+		seatRepo.save(s2);
+		seatRepo.save(s3);
+		seatRepo.save(s4);
+
+		BoardingPass bp4 = new BoardingPass(false, ru1, f1, s1);
+		BoardingPass bp5 = new BoardingPass(true, ru2, f1, s2);
+		BoardingPass bp6 = new BoardingPass(true, ru3, f3, s3);
+
+		boardRepo.save(bp4);
+		boardRepo.save(bp5);
+		boardRepo.save(bp6);
+
+//		Collection<BoardingPass> boardingPassCollection = new HashSet();
+//		boardingPassCollection.add(bp4);
+//		boardingPassCollection.add(bp5);
+//		boardingPassCollection.add(bp6);
+
+
 	}
 
 }
