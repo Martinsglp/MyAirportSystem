@@ -38,7 +38,7 @@ public class RegisteredUser extends User{
 	private int Extra_points;
 	
 	@Column(name="IsVIP")
-	private boolean isVIP;
+	private boolean VIP;
 
 	@Column(name = "Type")
 	private userType type;
@@ -57,7 +57,7 @@ public class RegisteredUser extends User{
 			@Min(0) @Max(100) int extra_points, boolean isVIP, userType type) {
 		super(username, password, name, surname, email);
 		Extra_points = extra_points;
-		this.isVIP = isVIP;
+		this.VIP = isVIP;
 		this.type = type;
 	}
 	

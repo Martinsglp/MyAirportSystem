@@ -58,7 +58,34 @@ public class AdminController {
     	return "show-all-users-page";
     }
     
-
+    @GetMapping("/register")
+    public String getRegisterUser(RegisteredUser registeredUser) {
+    	return "register-one-user-page";
+    }
+    
+    @PostMapping("/register")
+    public String postRegisterUser(@Valid RegisteredUser registeredUser, BindingResult result) {
+    	System.out.println(registeredUser);
+    	
+    	System.out.println(registeredUser.getUsername());
+    	
+    	if(result.hasErrors()) {
+    		return "register-one-user-page";
+    	}
+    	
+    	adminService.registerUser(registeredUser.getUsername(),
+    							registeredUser.getPassword(),
+    							registeredUser.getName(),
+    							registeredUser.getSurname(),
+    							registeredUser.getEmail(),
+    							registeredUser.getExtra_points(),
+    							registeredUser.isVIP(),
+    							registeredUser.getType());
+    	return "redirect:/admin/showAllUsers";
+    	
+    }
+    
+    
     @GetMapping("/registerNewFlight") // url: localhost:8080/admin/registerNewFlight
     public String getRegisterNewFlight (Flight flight) {
         return "register-new-flight-page";

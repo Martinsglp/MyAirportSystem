@@ -1,6 +1,6 @@
 <html xmlns:th="http://www.thymeLeaf.org">
 	<body >
-		<form action="#" th:action = "@{/guest/register}" th:object= "${registeredUser}" method="post">
+		<form action="#" th:action = "@{/admin/register}" th:object= "${registeredUser}" method="post"> <!-- jasakrit ar controlieri objekts -->
 			
 			
 			<table>
@@ -40,13 +40,22 @@
 					<td th:if= "${#fields.hasErrors('Extra_points')}" th:errors="*{Extra_points}"> </td>
 				</tr>
 				
-				
-				<!--  <tr>
+				<tr>
 					<td>IsVIP</td>
 					<td> <input type="checkbox" th:field="*{VIP}"> </td> 
 					<td th:if= "${#fields.hasErrors('VIP')}" th:errors="*{VIP}"> </td>
 				</tr>
-				-->
+				
+				<tr> 
+					<td>Type of User </td>
+					<td> 
+						<select name= "type">
+							<option th:each="type : ${T(com.example.demo.models.enums.userType).values()}" th:value="${type}" th:text = "${type}" ><!-- What will be stored --> <!-- where to look for -->
+							</option>
+						</select>
+					</td>
+				</tr>
+				
 				
 			</table>
 			

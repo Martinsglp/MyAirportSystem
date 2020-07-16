@@ -78,5 +78,19 @@ public class AdminServiceImpl implements IAdminService{
 	public ArrayList<RegisteredUser> selectAllVipRegisteredUsers() {
 		return registRepo.findByType(userType.VIP);
 	}
+
+	@Override
+	public boolean registerUser(String username, String password, String name, String surname, String email, int extra_points, boolean VIP, userType type) {
+		System.out.println(extra_points +" "+ VIP +" "+ username);
+		
+		if(!registRepo.existsByUsername(username)) {
+			
+			
+			
+			registRepo.save(new RegisteredUser(username, password, name, surname, email, extra_points, VIP, type));
+			return true;
+		}
+		return false;
+	}
 	
 }
