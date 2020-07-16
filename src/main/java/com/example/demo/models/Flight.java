@@ -44,6 +44,9 @@ public class Flight implements Comparable<Flight>{
     @Min(value = 0, message = "The value must be positive")
     private double flightPrice;
 
+    
+    
+    
     public Flight(LocalDateTime dateAndTime, int duration, AirportList airportFrom, AirportList airportTo, double flightPrice) {
         this.creationDateTime = dateAndTime.withNano(0);
         this.duration = duration;
@@ -51,7 +54,11 @@ public class Flight implements Comparable<Flight>{
         this.airportTo = airportTo;
         this.flightPrice = flightPrice;
     }
+    
+    
 
+    
+    
     @OneToMany(mappedBy = "flight")
     private Collection<BoardingPass> boardingPasses;
 

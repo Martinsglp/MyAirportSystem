@@ -13,15 +13,23 @@ public interface IFlightService {
 
     List<Flight> showSelectedFlightsInfoByAirports(AirportList airportFrom, AirportList airportTo);
 
+    void saveTestingData();
+
     boolean checkIfFlightIsInDB(Flight flight);
 
-    boolean updateFlightById(int id, AirportList airportFrom, AirportList airportTo, Flight flight);
+	  boolean deleteFlightById(int id);
 
-    boolean deleteFlightById(int id);
+	  boolean updateFlightObjectById(int id, Flight flight);
 
-    boolean updateFlightObjectById(int id, Flight flight);
+    ArrayList<Flight> selectAllFlights();
 
-    ArrayList<Flight> getAllFlightsByDate(LocalDateTime creationDateTime);
+	Flight selectOneFlightById(int id) throws Exception;
+
+	boolean updateFlightById(int id, LocalDateTime creationDateTime, int duration, AirportList airportFrom,
+			AirportList airportTo, double flightPrice, Flight flight);
+
+	ArrayList<Flight> getAllFlightsByDate(LocalDateTime creationDateTime);
+
 
 }
 

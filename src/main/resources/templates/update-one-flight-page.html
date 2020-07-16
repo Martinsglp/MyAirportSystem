@@ -1,16 +1,16 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Register new flight</title>
+    <title>Update flight</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link rel="stylesheet" type="text/css" href="webjars/bootstrap/3.3.7/css/bootstrap.min.css"/>
     <link rel="stylesheet" th:href="@{/css/main.css}" href="../../css/main.css"/>
 </head>
 <body>
-    <form action="#" th:action="@{/admin/registerNewFlight}" th:object="${flight}" method="post">
+    <form action="#" th:action="@{/admin/updateFlight/__${id}__}" th:object="${flight}" method="post">
 
         <div>
-            <h3>Register new flight: </h3>
+            <h3>Update flight: </h3>
         </div>
 
         <table class="table table-bordered">
@@ -59,11 +59,6 @@
 
         <input type="submit">
     </form>
-
-    <div class="backButton">
-        <a class="buttons" href="/admin" role="button">BACK TO MAIN PAGE</a>
-    </div>
-
 <script type="text/javascript" src="webjars/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </body>
 </html>

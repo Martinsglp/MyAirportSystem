@@ -7,8 +7,6 @@ import com.example.demo.models.RegisteredUser;
 import com.example.demo.service.IAdminService;
 import com.example.demo.service.IAirportService;
 
-import com.example.demo.service.IAdminService;
-
 import com.example.demo.service.IFlightService;
 import com.example.demo.service.IRegisterService;
 
@@ -19,11 +17,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 
@@ -42,6 +40,11 @@ public class AdminController {
     
     @Autowired
     IRegisterService regService;
+
+    @GetMapping("") // url: localhost:8080/admin
+    public String showAdminStartPage() {
+        return "admin-start-page";
+    }
 
     @GetMapping("/showAllFlights") // url: localhost:8080/admin/showAllFlights
     public String getShowAllFlights(Model model) {
@@ -80,6 +83,41 @@ public class AdminController {
     }
     
     
+    @GetMapping("/updateFlight/{id}")
+	public String getUpdateFlight(@PathVariable(name = "id")int id, Model model, Flight flight) {
+		try {
+			Flight flightForUpdate = flightService.selectOneFlightById(id);
+			model.addAttribute("flight", flightForUpdate);
+			System.out.println("update");
+			return "update-one-flight-page";
+		} catch (Exception e) {
+			return "error";
+		}
+	}    
+    
+	@PostMapping("/updateFlight/{id}")
+	public String postUpdate(@PathVariable(name = "id") int id, Flight flight/*, BindingResult result*/) {
+		System.out.println(id);
+		System.out.println(flight);
+		/*
+		if(result.hasErrors()) {
+			return "update-one-product-page";
+		}*/
+		flightService.updateFlightObjectById(id, flight);
+		return "redirect:/admin/showAllFlights";
+		
+	}
+    
+    @GetMapping("/deleteFlight/{id}")
+	public String getDelete(@PathVariable(name = "id")int id, Model model) {
+		if(flightService.deleteFlightById(id)) {
+			model.addAttribute("innerObject");
+			return "show-all-flights-page";
+		}
+		return "error";
+	}
+    
+
     @GetMapping("/showStatistics") // url: localhost:8080/admin/showStatistics
     public String getShowStatistics(Model model) {
         model.addAttribute("allFlights", adminService.selectAllFlights());
@@ -92,7 +130,6 @@ public class AdminController {
         model.addAttribute("allFlights", adminService.selectAllFlights());
         model.addAttribute("statisticsForm", new StatisticsForm());
         List<Flight> allFlightsByDates = flightService.getAllFlightsByDate(statisticsForm.getCreationDateTime());
-
         model.addAttribute("statistics", allFlightsByDates);
         return "show-statistics-page";
     }
