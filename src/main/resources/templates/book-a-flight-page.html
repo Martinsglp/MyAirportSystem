@@ -7,7 +7,7 @@
     <link rel="stylesheet" th:href="@{/css/main.css}" href="../../css/main.css"/>
 </head>
 <body>
-    <form action="#" th:action="@{/user/bookAFlight}" th:object="${flight}" method="post">
+    <form action="#" th:action="@{/admin/bookAFlight/__${id}__}" th:object="${bookAFlightForm}" method="post">
 
         <div>
             <h3>Book a flight: </h3>
@@ -17,11 +17,15 @@
             <tbody>
             <tr>
                 <td> Please choose a date: </td>
-                <!--dates from db in list-->
+                <div class="col-sm-4">
+                    <td>
+                        <input type="datetime-local" th:field="*{creationDateTime}"/>
+                    </td>
+                </div>
             </tr>
 
             <tr>
-                <td>Please insert AirportFrom: </td>
+                <td>Please choose AirportFrom: </td>
                 <td>
                     <select name = "airportFrom">
                         <option th:each="airportFrom : ${T(com.example.demo.models.enums.AirportList).values()}"
@@ -32,7 +36,7 @@
             </tr>
 
             <tr>
-                <td>Please insert AirportTo: </td>
+                <td>Please choose AirportTo: </td>
                 <td>
                     <select name = "airportTo">
                         <option th:each="airportTo : ${T(com.example.demo.models.enums.AirportList).values()}"
@@ -45,11 +49,11 @@
             </tbody>
         </table>
 
-        <input type="submit">
+        <input type="submit" name="Book a flight">
     </form>
 
     <div class="backButton">
-        <a class="buttons" href="/user" role="button">BACK TO MAIN PAGE</a>
+        <a class="buttons" href="/admin" role="button">BACK TO MAIN PAGE</a>
     </div>
 
 </body>

@@ -17,5 +17,5 @@ public interface IRegisterService {
 	
 	boolean checkIfUserIsViP(Collection<RegisteredUser> registeredUsers);
 
-
+	boolean checkIfOneUserIsViP(RegisteredUser registeredUser);
 }

@@ -1,14 +1,14 @@
 package com.example.demo.service.impl;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
+import com.example.demo.models.*;
+import com.example.demo.models.enums.AirportList;
+import com.example.demo.service.IRegisterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.demo.models.Admin;
-import com.example.demo.models.BoardingPass;
-import com.example.demo.models.Flight;
-import com.example.demo.models.RegisteredUser;
 import com.example.demo.models.enums.userType;
 import com.example.demo.repos.IAdminRepo;
 import com.example.demo.repos.IBoardingPassRepo;
@@ -31,6 +31,9 @@ public class AdminServiceImpl implements IAdminService{
 	
 	@Autowired
 	IBoardingPassRepo boardRepo;
+
+	@Autowired
+	IRegisterService registerService;
 	
 	@Override
 	public boolean registerAdmin(String username, String password, String name, String surname, String email, userType type) {
@@ -60,6 +63,14 @@ public class AdminServiceImpl implements IAdminService{
 	}
 
 	@Override
+	public boolean findFlightByDateAndAirports(LocalDateTime dateTime, AirportList nameFrom, AirportList nameTo){
+		if (flightRepo.existsByCreationDateTimeAndAirportFromAndAirportTo(dateTime, nameFrom, nameTo)) {
+			return true;
+		}
+		return false;
+	}
+
+	@Override
 	public ArrayList<BoardingPass> selectAllBoardingPasses() {
 		return (ArrayList<BoardingPass>) boardRepo.findAll();
 	}
@@ -77,6 +88,20 @@ public class AdminServiceImpl implements IAdminService{
 	@Override
 	public ArrayList<RegisteredUser> selectAllVipRegisteredUsers() {
 		return registRepo.findByType(userType.VIP);
+	}
+
+	@Override
+	public boolean bookAFlight(int userID, LocalDateTime dateTime, AirportList nameFrom, AirportList nameTo) {
+		for (RegisteredUser rus : registRepo.findAll()) {
+			if (rus.getRus_ID() == userID) {
+				boolean priorityGroupForRus = registerService.checkIfOneUserIsViP(rus);
+				BoardingPass boardingPass = new BoardingPass(priorityGroupForRus, rus,
+						flightRepo.findByCreationDateTimeAndAirportFromAndAirportTo(dateTime, nameFrom, nameTo), new Seat('A', (short)56));
+				boardRepo.save(boardingPass);
+				return true;
+			}
+		}
+		return false;
 	}
 	
 }

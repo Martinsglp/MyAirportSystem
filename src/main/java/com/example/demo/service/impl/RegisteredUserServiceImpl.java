@@ -72,7 +72,21 @@ public class RegisteredUserServiceImpl implements IRegisterService{
 		return false;
 	}
 
-	
+	@Override
+	public boolean checkIfOneUserIsViP(RegisteredUser registeredUser) {
+		int minimumReq = 40;
+
+		for (RegisteredUser reg : regRepo.findAll()){
+			RegisteredUser temp = regRepo.findByUsername(reg.getUsername());
+			if (temp.getExtra_points() >= minimumReq) {
+				temp.setType(userType.VIP);
+				temp.setVIP(true);
+				regRepo.save(temp);
+				return true;
+			}
+		}
+		return false;
+	}
 
 
 	
