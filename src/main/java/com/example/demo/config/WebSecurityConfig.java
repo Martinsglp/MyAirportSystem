@@ -12,6 +12,8 @@ import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 
+import net.bytebuddy.implementation.bind.MethodDelegationBinder.ParameterBinding.Anonymous;
+
 
 @Configurable
 @EnableWebSecurity
@@ -47,7 +49,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 	@Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-        .antMatchers("/guest/**").anonymous()
+        .antMatchers("/guest/**").permitAll()
         .antMatchers("/admin/**").hasRole("ADMIN")
         .antMatchers("/h2-console/**").hasRole("ADMIN")
         .anyRequest().authenticated()
