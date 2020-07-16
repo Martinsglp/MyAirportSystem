@@ -1,0 +1,83 @@
+<html xmlns:th="http://www.thymeLeaf.org">
+	<body >
+		<form action="#" th:action = "@{/guest/register}" th:object= "${user}" method="post">
+			
+			
+			<table>
+				<tr> <!-- this is a row -->
+					<td>Insert username</td>
+					<td> <input type="text" th:field="*{username}"> </td> <!-- ievada txt -->
+					<td th:if= "${#fields.hasErrors('username')}" th:errors="*{username}"> </td> <!-- validation part -->
+				</tr>
+				
+				<tr> 
+					<td>Insert password</td>
+					<td> <input type="text" th:field="*{password}"> </td>
+					<td th:if= "${#fields.hasErrors('password')}" th:errors="*{password}"> 
+				</tr>
+				
+				<tr>
+					<td>Insert Name</td>
+					<td> <input type="text" th:field="*{name}"> </td> 
+					<td th:if= "${#fields.hasErrors('name')}" th:errors="*{name}"> </td>
+				</tr>
+				
+				<tr>
+					<td>Insert Surname</td>
+					<td> <input type="text" th:field="*{surname}"> </td> 
+					<td th:if= "${#fields.hasErrors('surname')}" th:errors="*{surname}"> </td>
+				</tr>
+				
+				<tr>
+					<td>Insert Age</td>
+					<td> <input type="text" th:field="*{age}"> </td> 
+					<td th:if= "${#fields.hasErrors('age')}" th:errors="*{age}"> </td>
+				</tr>
+				
+				<tr>
+					<td>Insert Email</td>
+					<td> <input type="text" th:field="*{email}"> </td> 
+					<td th:if= "${#fields.hasErrors('email')}" th:errors="*{email}"> </td>
+				</tr>
+				
+				<tr>
+					<td>Insert ExtraPoints</td>
+					<td> <input type="text" th:field="*{age}"> </td> 
+					<td th:if= "${#fields.hasErrors('age')}" th:errors="*{age}"> </td>
+				</tr>
+				
+				<tr>
+					<td>IsVIP</td>
+					<td> <input type="text" th:field="*{age}"> </td> 
+					<td th:if= "${#fields.hasErrors('age')}" th:errors="*{age}"> </td>
+				</tr>
+				
+				<tr>
+					<td>Insert UserType</td>
+					<td> <input type="text" th:field="*{age}"> </td> 
+					<td th:if= "${#fields.hasErrors('age')}" th:errors="*{age}"> </td>
+				</tr>
+				
+				<tr> 
+					<td>Choose type of the Product </td>
+					<td> 
+						<select name= "type">
+							<option th:each="type : ${T(com.example.demo.models.enums.ProductType).values()}" th:value="${type}" th:text = "${type}" ><!-- What will be stored --> <!-- where to look for -->
+							</option>
+						</select>
+					</td>
+				</tr>
+				
+				
+				
+			</table>
+			
+			<input type="submit"> <!-- when we press submit we call automaticly post method -->
+			
+		</form>
+	
+	
+	</body>
+
+
+</html>

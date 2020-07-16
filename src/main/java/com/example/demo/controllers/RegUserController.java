@@ -1,4 +1,4 @@
-package com.example.demo.config;
+package com.example.demo.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,6 +17,11 @@ public class RegUserController {
 	
 	@GetMapping("/test")
 	public String test() {
+		return "hello-page";
+	}
+	
+	@GetMapping("/tests")
+	public String tests() {
 		return "hello-page";
 	}
 	
