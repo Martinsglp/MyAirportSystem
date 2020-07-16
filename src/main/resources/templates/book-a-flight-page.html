@@ -1,0 +1,56 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Book a flight</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" type="text/css" href="webjars/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <link rel="stylesheet" th:href="@{/css/main.css}" href="../../css/main.css"/>
+</head>
+<body>
+    <form action="#" th:action="@{/user/bookAFlight}" th:object="${flight}" method="post">
+
+        <div>
+            <h3>Book a flight: </h3>
+        </div>
+
+        <table class="table table-bordered">
+            <tbody>
+            <tr>
+                <td> Please choose a date: </td>
+                <!--dates from db in list-->
+            </tr>
+
+            <tr>
+                <td>Please insert AirportFrom: </td>
+                <td>
+                    <select name = "airportFrom">
+                        <option th:each="airportFrom : ${T(com.example.demo.models.enums.AirportList).values()}"
+                                th:value = "${airportFrom}" th:text="${airportFrom}">
+                        </option>
+                    </select>
+                </td>
+            </tr>
+
+            <tr>
+                <td>Please insert AirportTo: </td>
+                <td>
+                    <select name = "airportTo">
+                        <option th:each="airportTo : ${T(com.example.demo.models.enums.AirportList).values()}"
+                                th:value = "${airportTo}" th:text="${airportTo}">
+                        </option>
+                    </select>
+                </td>
+            </tr>
+
+            </tbody>
+        </table>
+
+        <input type="submit">
+    </form>
+
+    <div class="backButton">
+        <a class="buttons" href="/user" role="button">BACK TO MAIN PAGE</a>
+    </div>
+
+</body>
+</html>
