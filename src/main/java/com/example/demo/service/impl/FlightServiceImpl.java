@@ -125,5 +125,12 @@ public class FlightServiceImpl implements IFlightService{
 		}
     	return allFlightsByDate;
 	}
+
+	@Override
+	public void saveTestingData() {
+		// TODO Auto-generated method stub
+		
+	}
+
     
 }

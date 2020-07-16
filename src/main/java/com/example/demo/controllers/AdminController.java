@@ -8,7 +8,6 @@ import com.example.demo.service.IAdminService;
 import com.example.demo.service.IAirportService;
 
 import com.example.demo.service.IAdminService;
-
 import com.example.demo.service.IFlightService;
 import com.example.demo.service.IRegisterService;
 
@@ -19,11 +18,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
-<<<<<<< HEAD
 import org.springframework.web.bind.annotation.PathVariable;
-=======
 import org.springframework.web.bind.annotation.ModelAttribute;
->>>>>>> master
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -88,10 +84,6 @@ public class AdminController {
     }
     
     
-<<<<<<< HEAD
-    
-    
-    
     @GetMapping("/updateFlight/{id}")
 	public String getUpdateFlight(@PathVariable(name = "id")int id, Model model, Flight flight) {
 		try {
@@ -116,40 +108,16 @@ public class AdminController {
 		
 	}
     
-    
-    
-    
-    
-    
-    
-    
     @GetMapping("/deleteFlight/{id}")
 	public String getDelete(@PathVariable(name = "id")int id, Model model) {
 		if(flightService.deleteFlightById(id)) {
-			model.addAttribute("innerObject", flightService.selectAllFlights());
+			model.addAttribute("innerObject");
 			return "show-all-flights-page";
 		}
 		return "error";
 	}
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-=======
+
     @GetMapping("/showStatistics") // url: localhost:8080/admin/showStatistics
     public String getShowStatistics(Model model) {
         model.addAttribute("allFlights", adminService.selectAllFlights());
