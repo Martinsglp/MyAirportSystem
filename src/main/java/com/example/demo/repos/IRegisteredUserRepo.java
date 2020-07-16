@@ -16,8 +16,10 @@ public interface IRegisteredUserRepo extends CrudRepository<RegisteredUser, Inte
 	
 	RegisteredUser findByUsername(String username);
 
-	ArrayList<RegisteredUser> findByIsVIP(boolean b);
+	ArrayList<RegisteredUser> findByVIP(boolean b);
 
 	ArrayList<RegisteredUser> findByType(userType vip);
+
+	boolean existsByUsername(String username);
 	
 }
