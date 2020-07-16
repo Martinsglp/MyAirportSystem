@@ -47,9 +47,9 @@ public class MyAirportSystemApplication {
 			flightRepo.save(f3);
 			flightRepo.save(f4);
 
-			RegisteredUser ru1 = new RegisteredUser("Batuts", "123", "Valdis", "Bertrups", "bertrupsvaldis@inbox.lv", 15, userType.USER);
-			RegisteredUser ru2 = new RegisteredUser("Bosiks", "123", "Tjomka", "Lidotajs", "tjomkal@inbox.lv", 0, userType.USER);
-			RegisteredUser ru3 = new RegisteredUser("dzelzinieks", "123", "Toms", "Plavinieks", "Plavinieks@inbox.lv", 0, userType.USER);
+			RegisteredUser ru1 = new RegisteredUser("Batuts", "123", "Valdis", "Bertrups", "bertrupsvaldis@inbox.lv", 15, false, userType.USER);
+			RegisteredUser ru2 = new RegisteredUser("Bosiks", "123", "Tjomka", "Lidotajs", "tjomkal@inbox.lv", 0, false, userType.USER);
+			RegisteredUser ru3 = new RegisteredUser("dzelzinieks", "123", "Toms", "Plavinieks", "Plavinieks@inbox.lv", 0, false, userType.USER);
 			registeredUserRepo.save(ru1);
 			registeredUserRepo.save(ru2);
 			registeredUserRepo.save(ru3);
@@ -74,9 +74,9 @@ public class MyAirportSystemApplication {
 			boardingPassRepo.save(bp3);
 
 //		Collection<BoardingPass> boardingPassCollection = new HashSet();
-//		boardingPassCollection.add(bp4);
-//		boardingPassCollection.add(bp5);
-//		boardingPassCollection.add(bp6);
+//		boardingPassCollection.add(bp1);
+//		boardingPassCollection.add(bp2);
+//		boardingPassCollection.add(bp3);
 
 		};
 	}

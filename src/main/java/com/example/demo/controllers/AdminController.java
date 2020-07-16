@@ -97,6 +97,7 @@ public class AdminController {
     
 	@PostMapping("/updateFlight/{id}")
 	public String postUpdate(@PathVariable(name = "id") int id, Flight flight/*, BindingResult result*/) {
+		System.out.println(id);
 		System.out.println(flight);
 		/*
 		if(result.hasErrors()) {

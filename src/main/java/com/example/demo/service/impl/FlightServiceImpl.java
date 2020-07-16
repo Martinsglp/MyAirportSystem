@@ -88,7 +88,7 @@ public class FlightServiceImpl implements IFlightService{
 	@Override
 	public boolean updateFlightObjectById(int id, Flight flight) {
 		if(flightRepo.existsById(id)) {
-			Flight temp = flightRepo.findById(flight.getFl_ID()).get();
+			Flight temp = flightRepo.findById(id).get();
 			temp.setCreationDateTime(flight.getCreationDateTime());
 			temp.setDuration(flight.getDuration());
 			temp.setAirportFrom(flight.getAirportFrom());
