@@ -60,12 +60,12 @@ public class UserController {
         airportService.testModelLayer();
 
 */
-/*
+
     @GetMapping("")
     public String getHelloPage() {
 
         return "hello-page";
-    }*/
+    }
 
     @GetMapping("/showFlightSelectingPage") // url: localhost:8080/guest/showFlightSelectingPage
     public String getShowFlightSelectingPage(Flight flight) { // empty flight for filling data
