@@ -31,7 +31,7 @@ public class UserController {
     
     @Autowired
     IRegisterService regService;
-/*
+
     @GetMapping("/register")
     public String getRegisterUser(RegisteredUser regUser) {
     	return "insert-one-user-page";
@@ -50,22 +50,29 @@ public class UserController {
     	return "redirect:/admin/show-all-users-page";
     	
     }
-    */
     
     
-    /*
+    
+    
     @GetMapping("/saveTestingData")
     public String getSaveTestingData() {
         System.out.println("saveTestingData");
         airportService.testModelLayer();
 
-*/
+        
+        return "show-all-users-page";
+    }   
+        
+
+
+
 
     @GetMapping("")
     public String getHelloPage() {
 
         return "hello-page";
     }
+
 
     @GetMapping("/showFlightSelectingPage") // url: localhost:8080/guest/showFlightSelectingPage
     public String getShowFlightSelectingPage(Flight flight) { // empty flight for filling data
