@@ -6,7 +6,6 @@ import com.example.demo.models.Admin;
 import com.example.demo.models.BoardingPass;
 import com.example.demo.models.Flight;
 import com.example.demo.models.RegisteredUser;
-import com.example.demo.models.VIPUser;
 import com.example.demo.models.enums.userType;
 
 public interface IAdminService {
@@ -17,14 +16,19 @@ public interface IAdminService {
 	
 	ArrayList<RegisteredUser> selectAllRegisteredUsers();
 	
+	ArrayList<RegisteredUser> selectAllVipRegisteredUsers();
+	
 	ArrayList<Flight> selectAllFlights();
 	
 	ArrayList<BoardingPass> selectAllBoardingPasses();
 	
-	ArrayList<VIPUser> selectAllVIPUsers();
-	
 	boolean deleteFlightById(int id);
+	
+	//INSERT
+	
 	
 	//boolean updateFlightById(int id, Date date, int duration,);
 	//TODO write update shit...
+
+
 }

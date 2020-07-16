@@ -60,7 +60,6 @@ public class Flight implements Comparable<Flight>{
     
     
     @OneToMany(mappedBy = "flight")
-
     private Collection<BoardingPass> boardingPasses;
 
     @Override

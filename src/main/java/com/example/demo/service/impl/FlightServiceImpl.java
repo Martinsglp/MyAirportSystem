@@ -56,21 +56,6 @@ public class FlightServiceImpl implements IFlightService{
     }
 
     @Override
-    public void saveTestingData() {
-        Flight f1 = new Flight(LocalDateTime.now().plusDays(2), 1, AirportList.Anaa_Airport, AirportList.Anahim_Lake_Airport, 250);
-        Flight f2 = new Flight(LocalDateTime.now().plusDays(3), 2, AirportList.Bella_Coola_Airport, AirportList.Bilaspur_Airport, 300);
-        Flight f3 = new Flight(LocalDateTime.now().plusDays(4), 3, AirportList.Carauari_Airport, AirportList.Chennai_International_Airport, 150);
-        Flight f4 = new Flight(LocalDateTime.now().plusDays(5), 4, AirportList.Daru_Airport, AirportList.Eagle_Airport, 270);
-        Flight f5 = new Flight(LocalDateTime.now().plusDays(5), 4, AirportList.Daru_Airport, AirportList.Eagle_Airport, 500);
-
-        flightRepo.save(f1);
-        flightRepo.save(f2);
-        flightRepo.save(f3);
-        flightRepo.save(f4);
-        flightRepo.save(f5);
-    }
-
-    @Override
     public boolean checkIfFlightIsInDB(Flight flight) {
 
         if (flightRepo.existsByAirportFromAndAirportTo(flight.getAirportFrom(), flight.getAirportTo())) {
@@ -82,13 +67,6 @@ public class FlightServiceImpl implements IFlightService{
         }
     }
 
-    @Override
-    public ArrayList<Flight> selectAllFlights() {
-        ArrayList<Flight> allFlights = (ArrayList<Flight>)flightRepo.findAll();
-        return allFlights;
-    }
-   
-    
 	@Override
 	public boolean updateFlightById(int id, LocalDateTime dateAndTime, int duration, AirportList airportFrom,
 			AirportList airportTo, double flightPrice, Flight flight) {
@@ -132,7 +110,20 @@ public class FlightServiceImpl implements IFlightService{
 		}
 		return false;
 	}
-    
 
+	@Override
+	public ArrayList<Flight> getAllFlightsByDate(LocalDateTime creationDateTime) {
+		System.err.println(creationDateTime);
+    	ArrayList<Flight> allFlights = (ArrayList<Flight>)flightRepo.findAll();
+    	ArrayList<Flight> allFlightsByDate = new ArrayList<>();
+    	for (Flight f : allFlights) {
+			System.err.println(f);
+    		if (f.getCreationDateTime().getDayOfYear() == (creationDateTime.getDayOfYear())) {
+				System.out.println("********************************************");
+				allFlightsByDate.add(f);
+			}
+		}
+    	return allFlightsByDate;
+	}
     
 }

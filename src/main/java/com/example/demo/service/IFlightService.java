@@ -13,14 +13,21 @@ public interface IFlightService {
 
     List<Flight> showSelectedFlightsInfoByAirports(AirportList airportFrom, AirportList airportTo);
 
-    void saveTestingData();
-
     boolean checkIfFlightIsInDB(Flight flight);
 
+<<<<<<< HEAD
 	  boolean deleteFlightById(int id);
+=======
+    boolean updateFlightById(int id, AirportList airportFrom, AirportList airportTo, Flight flight);
 
-	  boolean updateFlightObjectById(int id, Flight flight);
+    boolean deleteFlightById(int id);
 
+    boolean updateFlightObjectById(int id, Flight flight);
+>>>>>>> master
+
+    ArrayList<Flight> getAllFlightsByDate(LocalDateTime creationDateTime);
+
+<<<<<<< HEAD
     ArrayList<Flight> selectAllFlights();
 
 	Flight selectOneFlightById(int id) throws Exception;
@@ -29,5 +36,7 @@ public interface IFlightService {
 			AirportList airportTo, double flightPrice, Flight flight);
 
 
+=======
+>>>>>>> master
 }
 

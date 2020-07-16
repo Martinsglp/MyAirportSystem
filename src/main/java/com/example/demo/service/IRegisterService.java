@@ -1,9 +1,11 @@
 package com.example.demo.service;
 
 import java.util.ArrayList;
+import java.util.Collection;
 
 import com.example.demo.models.BoardingPass;
 import com.example.demo.models.Flight;
+import com.example.demo.models.RegisteredUser;
 import com.example.demo.models.enums.userType;
 
 public interface IRegisterService {
@@ -13,7 +15,7 @@ public interface IRegisterService {
 	
 	ArrayList<BoardingPass> getAllFlightsByBoardingPass(BoardingPass pass)throws Exception;
 	
-	
+	boolean checkIfUserIsViP(Collection<RegisteredUser> registeredUsers);
 
 
 }
