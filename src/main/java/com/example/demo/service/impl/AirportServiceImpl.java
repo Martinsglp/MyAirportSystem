@@ -23,7 +23,6 @@ import com.example.demo.repos.IFlightRepo;
 import com.example.demo.repos.IRegisteredUserRepo;
 import com.example.demo.repos.ISeatRepo;
 import com.example.demo.service.IAirportService;
-import org.springframework.stereotype.Service;
 
 @Service
 public class AirportServiceImpl implements IAirportService{
@@ -50,7 +49,7 @@ public class AirportServiceImpl implements IAirportService{
 	
 	@Override
 	public void testModelLayer() {
-		
+
 		Admin a1 = new Admin("Patriots", "123456", "Janis", "Laivinieks", "laivinieks@gmail.com", userType.ADMIN);
 		Admin a2 = new Admin("Stiprinieks", "123456", "Peteris", "Celajs", "pcelajs@gmail.com", userType.ADMIN);
 		adminRepo.save(a1);
@@ -61,13 +60,6 @@ public class AirportServiceImpl implements IAirportService{
 		airportRepo.save(ap1);
 		airportRepo.save(ap2);
 		//TODO huh?
-		
-//		BoardingPass bp1 = new BoardingPass(false);
-//		BoardingPass bp2 = new BoardingPass(true);
-//		BoardingPass bp3 = new BoardingPass(true);
-//		boardRepo.save(bp1);
-//		boardRepo.save(bp2);
-//		boardRepo.save(bp3);
 
 		Flight f1 = new Flight(LocalDateTime.now().plusDays(1), 1, AirportList.Anahim_Lake_Airport, AirportList.Bilaspur_Airport, 222);
 		Flight f2 = new Flight(LocalDateTime.now().plusDays(3), 5, AirportList.Carauari_Airport, AirportList.Daru_Airport, 190);
@@ -78,13 +70,13 @@ public class AirportServiceImpl implements IAirportService{
 		flightRepo.save(f2);
 		flightRepo.save(f3);
 		flightRepo.save(f4);
-		
+
 
 		RegisteredUser ru1 = new RegisteredUser("Batuts", "123", "Valdis", "Bertrups", "bertrupsvaldsi@inbox.lv", 40, false, userType.USER);
 		RegisteredUser ru2 = new RegisteredUser("Bosiks", "123", "Tjomka", "Lidotajs", "tjomkal@inbox.lv", 0, false, userType.USER);
 		RegisteredUser ru3 = new RegisteredUser("Vaditajs", "123", "Arciks", "Smagais", "smagaisVaditajs@transport.com", 50, true, userType.VIP);
 		RegisteredUser ru4 = new RegisteredUser("Laivinieks", "123", "Didzis", "Dadzis", "dadzitis@gmail.com", 0, false, userType.USER);
-		
+
 		regRepo.save(ru1);
 		regRepo.save(ru2);
 		regRepo.save(ru3);
@@ -100,13 +92,13 @@ public class AirportServiceImpl implements IAirportService{
 		seatRepo.save(s3);
 		seatRepo.save(s4);
 
-		BoardingPass bp4 = new BoardingPass(false, ru1, f1, s1);
-		BoardingPass bp5 = new BoardingPass(true, ru2, f1, s2);
-		BoardingPass bp6 = new BoardingPass(true, ru3, f3, s3);
+		BoardingPass bp1 = new BoardingPass(false, ru1, f1, s1);
+		BoardingPass bp2 = new BoardingPass(true, ru2, f1, s2);
+		BoardingPass bp3 = new BoardingPass(true, ru3, f3, s3);
 
-		boardRepo.save(bp4);
-		boardRepo.save(bp5);
-		boardRepo.save(bp6);
+		boardRepo.save(bp1);
+		boardRepo.save(bp2);
+		boardRepo.save(bp3);
 
 //		Collection<BoardingPass> boardingPassCollection = new HashSet();
 //		boardingPassCollection.add(bp4);

@@ -1,0 +1,60 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Book a flight</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" type="text/css" href="webjars/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <link rel="stylesheet" th:href="@{/css/main.css}" href="../../css/main.css"/>
+</head>
+<body>
+    <form action="#" th:action="@{/admin/bookAFlight/__${id}__}" th:object="${bookAFlightForm}" method="post">
+
+        <div>
+            <h3>Book a flight: </h3>
+        </div>
+
+        <table class="table table-bordered">
+            <tbody>
+            <tr>
+                <td> Please choose a date: </td>
+                <div class="col-sm-4">
+                    <td>
+                        <input type="datetime-local" th:field="*{creationDateTime}"/>
+                    </td>
+                </div>
+            </tr>
+
+            <tr>
+                <td>Please choose AirportFrom: </td>
+                <td>
+                    <select name = "airportFrom">
+                        <option th:each="airportFrom : ${T(com.example.demo.models.enums.AirportList).values()}"
+                                th:value = "${airportFrom}" th:text="${airportFrom}">
+                        </option>
+                    </select>
+                </td>
+            </tr>
+
+            <tr>
+                <td>Please choose AirportTo: </td>
+                <td>
+                    <select name = "airportTo">
+                        <option th:each="airportTo : ${T(com.example.demo.models.enums.AirportList).values()}"
+                                th:value = "${airportTo}" th:text="${airportTo}">
+                        </option>
+                    </select>
+                </td>
+            </tr>
+
+            </tbody>
+        </table>
+
+        <input type="submit" name="Book a flight">
+    </form>
+
+    <div class="backButton">
+        <a class="buttons" href="/admin" role="button">BACK TO MAIN PAGE</a>
+    </div>
+
+</body>
+</html>

@@ -1,21 +1,19 @@
 package com.example.demo.controllers;
 
+import com.example.demo.forms.BookAFlightForm;
 import com.example.demo.forms.StatisticsForm;
 import com.example.demo.models.Flight;
 
-import com.example.demo.models.RegisteredUser;
+import com.example.demo.models.enums.AirportList;
 import com.example.demo.service.IAdminService;
 import com.example.demo.service.IAirportService;
 
 import com.example.demo.service.IFlightService;
 import com.example.demo.service.IRegisterService;
 
-import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -132,6 +130,23 @@ public class AdminController {
         List<Flight> allFlightsByDates = flightService.getAllFlightsByDate(statisticsForm.getCreationDateTime());
         model.addAttribute("statistics", allFlightsByDates);
         return "show-statistics-page";
+    }
+
+    @GetMapping("/bookAFlight/{id}")
+    public String getBookAFlight(@PathVariable(name="id") int id, Model model) {
+        model.addAttribute("allFlights", adminService.selectAllFlights());
+        model.addAttribute("bookAFlightForm", new BookAFlightForm());
+        return "book-a-flight-page";
+    }
+
+    @PostMapping("/bookAFlight/{id}")
+    public String postBookAFlight(@PathVariable(name="id") int id, @ModelAttribute BookAFlightForm bookAFlightForm, Model model) {
+        model.addAttribute("allFlights", adminService.selectAllFlights());
+        model.addAttribute("bookAFlightForm", new BookAFlightForm());
+        List<Flight> allFlightsByDates = flightService.getAllFlightsByDate(bookAFlightForm.getCreationDateTime());
+        model.addAttribute("bookedFlight", allFlightsByDates);
+        adminService.bookAFlight(id, bookAFlightForm.getCreationDateTime(), bookAFlightForm.getAirportFrom(), bookAFlightForm.getAirportTo());
+        return "book-a-flight-page";
     }
 
 }

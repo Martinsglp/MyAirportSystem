@@ -1,11 +1,13 @@
 package com.example.demo.service;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 import com.example.demo.models.Admin;
 import com.example.demo.models.BoardingPass;
 import com.example.demo.models.Flight;
 import com.example.demo.models.RegisteredUser;
+import com.example.demo.models.enums.AirportList;
 import com.example.demo.models.enums.userType;
 
 public interface IAdminService {
@@ -30,5 +32,8 @@ public interface IAdminService {
 	//boolean updateFlightById(int id, Date date, int duration,);
 	//TODO write update shit...
 
+	boolean findFlightByDateAndAirports(LocalDateTime dateTime, AirportList nameFrom, AirportList nameTo);
+
+	boolean bookAFlight(int userID, LocalDateTime dateTime, AirportList nameFrom, AirportList nameTo);
 
 }
