@@ -28,8 +28,6 @@ public class UserController {
 
     @GetMapping("")
     public String getHelloPage() {
-        System.out.println("saveTestingData");
-        airportService.testModelLayer();
         return "hello-page";
     }
 
