@@ -20,5 +20,10 @@ public class RegUserController {
 		return "hello-page";
 	}
 	
+	@GetMapping("/tests")
+	public String tests() {
+		return "hello-page";
+	}
+	
 	
 }
