@@ -1,5 +1,7 @@
 package com.example.demo.config;
 
+import java.lang.ProcessBuilder.Redirect;
+
 import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -56,13 +58,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
         .and()
         .formLogin().permitAll()
         .and()
-        .logout().permitAll();
+        .logout().permitAll().logoutSuccessUrl("/guest");
 
           
         http.csrf().disable();
         http.headers().frameOptions().disable();
                     
     }
+	
+	
 	
 	
 	
