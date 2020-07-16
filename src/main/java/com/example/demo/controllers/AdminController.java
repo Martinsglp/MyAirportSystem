@@ -7,7 +7,6 @@ import com.example.demo.models.RegisteredUser;
 import com.example.demo.service.IAdminService;
 import com.example.demo.service.IAirportService;
 
-import com.example.demo.service.IAdminService;
 import com.example.demo.service.IFlightService;
 import com.example.demo.service.IRegisterService;
 
@@ -134,5 +133,4 @@ public class AdminController {
         return "show-statistics-page";
     }
 
->>>>>>> master
 }
