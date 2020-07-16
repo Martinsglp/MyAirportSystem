@@ -41,27 +41,40 @@ public class AdminController {
         return  "redirect:/admin/showAllFlights";
     }
     
+    
+    
+    
+    
     @GetMapping("/updateFlight/{id}")
-	public String getUpdate(@PathVariable(name = "id")int id, Model model, Flight flight) {
+	public String getUpdateFlight(@PathVariable(name = "id")int id, Model model, Flight flight) {
 		try {
 			Flight flightForUpdate = flightService.selectOneFlightById(id);
-			model.addAttribute("product", flightForUpdate);
+			model.addAttribute("flight", flightForUpdate);
+			System.out.println("update");
 			return "update-one-flight-page";
 		} catch (Exception e) {
 			return "error";
 		}
 	}    
     
-    @PostMapping("/updateFlight/{id}")
-	public String postUpdate(@PathVariable(name = "id") int id, Flight product/*, BindingResult result*/) {
-		System.out.println(product);
+	@PostMapping("/updateFlight/{id}")
+	public String postUpdate(@PathVariable(name = "id") int id, Flight flight/*, BindingResult result*/) {
+		System.out.println(flight);
 		/*
 		if(result.hasErrors()) {
 			return "update-one-product-page";
 		}*/
-		flightService.updateFlightObjectById(id, product);
+		flightService.updateFlightObjectById(id, flight);
 		return "redirect:/admin/showAllFlights";
+		
 	}
+    
+    
+    
+    
+    
+    
+    
     
     @GetMapping("/deleteFlight/{id}")
 	public String getDelete(@PathVariable(name = "id")int id, Model model) {

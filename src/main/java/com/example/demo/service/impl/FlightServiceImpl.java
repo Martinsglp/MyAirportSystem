@@ -18,6 +18,7 @@ public class FlightServiceImpl implements IFlightService{
     @Autowired
     IFlightRepo flightRepo;
     
+    
     @Override
 	public Flight selectOneFlightById(int id) throws Exception {
 		if(id > 0) {
@@ -89,13 +90,17 @@ public class FlightServiceImpl implements IFlightService{
    
     
 	@Override
-	public boolean updateFlightById(int id, AirportList airportFrom, AirportList airportTo, Flight flight) {
+	public boolean updateFlightById(int id, LocalDateTime dateAndTime, int duration, AirportList airportFrom,
+			AirportList airportTo, double flightPrice, Flight flight) {
 		if(id > 0) {
 			if(flightRepo.existsById(id)) {
-				Flight productToUpdate = flightRepo.findById(id).get();
-				productToUpdate.setAirportFrom(airportFrom);
-				productToUpdate.setAirportTo(airportTo);
-				flightRepo.save(flight);
+				Flight flightToUpdate = flightRepo.findById(id).get();
+				flightToUpdate.setCreationDateTime(dateAndTime.withNano(0));
+				flightToUpdate.setDuration(duration);
+				flightToUpdate.setAirportFrom(airportFrom);
+				flightToUpdate.setAirportTo(airportTo);
+				flightToUpdate.setFlightPrice(flightPrice);
+				flightRepo.save(flightToUpdate);
 				return true;
 			}
 		}
@@ -106,9 +111,11 @@ public class FlightServiceImpl implements IFlightService{
 	public boolean updateFlightObjectById(int id, Flight flight) {
 		if(flightRepo.existsById(id)) {
 			Flight temp = flightRepo.findById(flight.getFl_ID()).get();
+			temp.setCreationDateTime(flight.getCreationDateTime());
+			temp.setDuration(flight.getDuration());
 			temp.setAirportFrom(flight.getAirportFrom());
 			temp.setAirportTo(flight.getAirportTo());
-			temp.setDuration(flight.getDuration());
+			temp.setFlightPrice(flight.getFlightPrice());
 			flightRepo.save(temp);
 			return true;
 		}
