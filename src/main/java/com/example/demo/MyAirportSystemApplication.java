@@ -4,12 +4,14 @@ import com.example.demo.models.*;
 import com.example.demo.models.enums.AirportList;
 import com.example.demo.models.enums.userType;
 import com.example.demo.repos.*;
+
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
 import java.time.LocalDateTime;
+
 
 @SpringBootApplication
 public class MyAirportSystemApplication {
@@ -78,5 +80,4 @@ public class MyAirportSystemApplication {
 
 		};
 	}
-
 }

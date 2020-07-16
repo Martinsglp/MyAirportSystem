@@ -1,0 +1,50 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Show all users</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" type="text/css" href="webjars/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <link rel="stylesheet" th:href="@{/css/main.css}" href="../../css/main.css"/>
+</head>
+<body>
+<form action="#" th:action="@{/admin/showAllUsers}" th:object="${registeredUser}" method="post">
+
+    <div>
+        <h3>All registered users: </h3>
+    </div>
+
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Username</th>
+            <th>Password</th>
+            <th>Name</th>
+            <th>Surname</th>
+            <th>Email</th>
+            <th>isVIP</th>
+            <th>Type</th>
+        </tr>
+        </thead>
+
+        <tbody>
+            <tr th:each="registeredUser: ${allRegisteredUsers}">
+                <td th:text="${registeredUser.getRus_ID()}"></td>
+                <td th:text="${registeredUser.getUsername()}"></td>
+                <td th:text="${registeredUser.getPassword()}"></td>
+                <td th:text="${registeredUser.getName()}"></td>
+                <td th:text="${registeredUser.getSurname()}"></td>
+                <td th:text="${registeredUser.getEmail()}"></td>
+                <td th:text="${registeredUser.isVIP()}"></td>
+                <td th:text="${registeredUser.getType()}"></td>
+            </tr>
+        </tbody>
+
+    </table>
+    <form>
+        <input type="button" value="Back" onclick="history.back()">
+    </form>
+
+</form>
+</body>
+</html>

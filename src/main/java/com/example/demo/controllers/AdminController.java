@@ -2,11 +2,22 @@ package com.example.demo.controllers;
 
 import com.example.demo.forms.StatisticsForm;
 import com.example.demo.models.Flight;
+
+import com.example.demo.models.RegisteredUser;
 import com.example.demo.service.IAdminService;
+import com.example.demo.service.IAirportService;
+
+import com.example.demo.service.IAdminService;
+
 import com.example.demo.service.IFlightService;
+import com.example.demo.service.IRegisterService;
+
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,10 +31,16 @@ import java.util.List;
 public class AdminController {
 
     @Autowired
-    IAdminService adminService;
-
-    @Autowired
     IFlightService flightService;
+    
+    @Autowired
+    IAirportService airportService;
+    
+    @Autowired
+    IAdminService adminService;
+    
+    @Autowired
+    IRegisterService regService;
 
     @GetMapping("") // url: localhost:8080/admin
     public String showAdminStartPage() {
@@ -35,6 +52,13 @@ public class AdminController {
         model.addAttribute("allFlights", adminService.selectAllFlights());
         return "show-all-flights-page";
     }
+    
+    @GetMapping("/showAllUsers")
+    public String getShowAllUsers(Model model) {
+    	model.addAttribute("allRegisteredUsers", adminService.selectAllRegisteredUsers());
+    	return "show-all-users-page";
+    }
+    
 
     @GetMapping("/registerNewFlight") // url: localhost:8080/admin/registerNewFlight
     public String getRegisterNewFlight (Flight flight) {
@@ -49,6 +73,16 @@ public class AdminController {
 
         return  "redirect:/admin/showAllFlights";
     }
+
+    
+    @GetMapping("/checkIfVip")
+    public String getCheckIfVip(Model model) {
+    	regService.checkIfUserIsViP(adminService.selectAllRegisteredUsers());
+    	
+    	model.addAttribute("allRegisteredUsers", adminService.selectAllVipRegisteredUsers());
+    	return "show-all-users-page";
+    }
+    
     
     @GetMapping("/showStatistics") // url: localhost:8080/admin/showStatistics
     public String getShowStatistics(Model model) {
