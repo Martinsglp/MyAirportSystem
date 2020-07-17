@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -35,6 +36,9 @@ public class UserController {
     @Autowired
     IRegisterService regService;
 
+
+    
+    
     @GetMapping("/register")
     public String getRegisterUser(RegisteredUser regUser) {
     	return "insert-one-user-page";
@@ -52,7 +56,7 @@ public class UserController {
     	
     	regService.registerRegUser(regUser.getUsername(), encoder.encode(regUser.getPassword()) , regUser.getName(), regUser.getSurname(), regUser.getEmail(), regUser.getUserAutority());
     	//TODO change from admin to user page..
-    	return "redirect:/admin/showAllUsers";
+    	return "redirect:/regUser/showAllUsers";
     	
     }
     

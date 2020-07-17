@@ -18,5 +18,9 @@ public interface IRegisterService {
 	
 	boolean checkIfUserIsViP(Collection<RegisteredUser> registeredUsers);
 	
+	ArrayList<RegisteredUser> selectAllRegisteredUsers();
+	
+	ArrayList<Flight> selectAllFlights();
+	
 
 }

@@ -34,11 +34,7 @@
 					<td th:if= "${#fields.hasErrors('email')}" th:errors="*{email}"> </td>
 				</tr>
 				
-				<tr>
-					<td>Insert ExtraPoints</td>
-					<td> <input type="text" th:field="*{Extra_points}"> </td> 
-					<td th:if= "${#fields.hasErrors('Extra_points')}" th:errors="*{Extra_points}"> </td>
-				</tr>
+
 				
 				
 				<!--  <tr>
@@ -50,7 +46,12 @@
 				
 			</table>
 			
+			
 			<input type="submit"> <!-- when we press submit we call automaticly post method -->
+			
+			<div class="backButton">
+			<a class="buttons" href="/guest" role="button">BACK TO MAIN PAGE</a>
+			</div>
 			
 		</form>
 	

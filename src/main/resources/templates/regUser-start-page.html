@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>RegUser StartPage</title>
+			<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+			<link rel="stylesheet" type="text/css" href="webjars/bootstrap/3.3.7/css/bootstrap.min.css"/>
+			<link rel="stylesheet" th:href="@{/css/main.css}" href="../../css/main.css"/>
+	</head>
+	
+	<body>
+
+		<div>
+			<h3>Choose you action: </h3>
+		</div>
+
+		<!--<form action="/regUser/bookAFlight">-->
+			<!-- <a th:href="@{'/regUser/bookAFlight/' + ${id}}">Book a flight</a> -->
+		<!--</form>-->
+		
+		
+		<form action="/regUser/showAllFlights">
+    		<input type="submit" value="Show all flights" />
+   		</form>
+
+	<form action="/logout">
+		<input type="submit" value="Sign Out" />
+	</form>
+
+
+
+
+	</body>
+</html>

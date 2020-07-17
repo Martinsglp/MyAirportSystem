@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.models.BoardingPass;
+import com.example.demo.models.Flight;
 import com.example.demo.models.RegisteredUser;
 import com.example.demo.models.UserAuthority;
 import com.example.demo.repos.IBoardingPassRepo;
@@ -78,6 +79,15 @@ public class RegisteredUserServiceImpl implements IRegisterService{
 		return false;
 	}
 
+	@Override
+	public ArrayList<RegisteredUser> selectAllRegisteredUsers() {
+		return (ArrayList<RegisteredUser>) regRepo.findAll();
+	}
+
+	@Override
+	public ArrayList<Flight> selectAllFlights() {
+		return (ArrayList<Flight>) flightRepo.findAll();
+	}
 	
 
 
