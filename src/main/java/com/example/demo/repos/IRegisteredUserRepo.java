@@ -6,7 +6,7 @@ import org.springframework.data.repository.CrudRepository;
 
 import com.example.demo.models.BoardingPass;
 import com.example.demo.models.RegisteredUser;
-import com.example.demo.models.enums.userType;
+import com.example.demo.models.UserAuthority;
 
 public interface IRegisteredUserRepo extends CrudRepository<RegisteredUser, Integer>{
 	
@@ -18,7 +18,7 @@ public interface IRegisteredUserRepo extends CrudRepository<RegisteredUser, Inte
 
 	ArrayList<RegisteredUser> findByVIP(boolean b);
 
-	ArrayList<RegisteredUser> findByType(userType vip);
+	ArrayList<RegisteredUser> findByUserAutority(UserAuthority vip);
 
 	boolean existsByUsername(String username);
 	

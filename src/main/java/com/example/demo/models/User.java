@@ -20,7 +20,7 @@ public class User {
 	private String username;
 	
 	@Column(name="Password")
-	@Size(min=3, max=30)
+	@Size(min=3, max=100)
 //	@Pattern(regexp = "[a-zA-Z\\s]+$", message = "Check name!")
 	private String password;
 	

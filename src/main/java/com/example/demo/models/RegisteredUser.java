@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Max;
@@ -14,7 +16,6 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
-import com.example.demo.models.enums.userType;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -39,13 +40,14 @@ public class RegisteredUser extends User{
 	
 	@Column(name="IsVIP")
 	private boolean VIP;
-
-	@Column(name = "Type")
-	private userType type;
-
-	public RegisteredUser(@Size(min = 0, max = 100) int extra_points, userType type) {
+	
+	@ManyToOne
+	@JoinColumn(name = "AU_ID")
+	private UserAuthority userAutority;
+	
+	public RegisteredUser(@Size(min = 0, max = 100) int extra_points, UserAuthority type) {
 		Extra_points = extra_points;
-		this.type = type;
+		this.userAutority = type;
 	}
 	
 	public RegisteredUser(
@@ -54,11 +56,11 @@ public class RegisteredUser extends User{
 			@Size(min = 3, max = 30) @Pattern(regexp = "[a-zA-Z\\s]+$", message = "Check name!") String name,
 			@Size(min = 3, max = 30) @Pattern(regexp = "[a-zA-Z\\s]+$", message = "Check name!") String surname,
 			@Size(min = 4, max = 30) @Pattern(regexp = "[A-Za-z0-9+_.-]+@(.+)$", message = "Check name!") String email,
-			@Min(0) @Max(100) int extra_points, boolean isVIP, userType type) {
+			@Min(0) @Max(100) int extra_points, boolean isVIP, UserAuthority type) {
 		super(username, password, name, surname, email);
 		Extra_points = extra_points;
 		this.VIP = isVIP;
-		this.type = type;
+		this.userAutority = type;
 	}
 	
 	
@@ -66,5 +68,8 @@ public class RegisteredUser extends User{
 	@ToString.Exclude
 	@OneToMany(mappedBy = "registeredUser")
 	private Collection<BoardingPass> boardingPasses;
-
+	
+	
+	
+	
 }

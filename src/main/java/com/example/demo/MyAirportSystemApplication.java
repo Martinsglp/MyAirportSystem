@@ -2,13 +2,13 @@ package com.example.demo;
 
 import com.example.demo.models.*;
 import com.example.demo.models.enums.AirportList;
-import com.example.demo.models.enums.userType;
 import com.example.demo.repos.*;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.time.LocalDateTime;
 
@@ -19,18 +19,18 @@ public class MyAirportSystemApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(MyAirportSystemApplication.class, args);
 	}
-
+	
 	@Bean // norada visus repo, kurus grib izmantot datu saglabasanai
-	public CommandLineRunner testingDataLoader(IAdminRepo adminRepo, IAirportRepo airportRepo,
+	public CommandLineRunner testingDataLoader(IAirportRepo airportRepo,
 											   IBoardingPassRepo boardingPassRepo, IFlightRepo flightRepo,
-											   IRegisteredUserRepo registeredUserRepo, ISeatRepo seatRepo) {
+											   IRegisteredUserRepo registeredUserRepo, ISeatRepo seatRepo, IUserAuthorityRepo userAuthorityRepo, PasswordEncoder encoder) {
 
 		return (args) -> {
-			Admin a1 = new Admin("Patriots", "123", "Janis", "Laivinieks", "laivinieks@gmail.com", userType.ADMIN);
+		/*	Admin a1 = new Admin("Patriots", "123", "Janis", "Laivinieks", "laivinieks@gmail.com", userType.ADMIN);
 			Admin a2 = new Admin("Stiprinieks", "123", "Peteris", "Celajs", "pcelajs@gmail.com", userType.ADMIN);
 			adminRepo.save(a1);
 			adminRepo.save(a2);
-
+*/
 			Airport ap1 = new Airport(AirportList.Igark_Airport, 5);
 			Airport ap2 = new Airport(AirportList.Gabbs_Airport, 4);
 			airportRepo.save(ap1);
@@ -47,9 +47,25 @@ public class MyAirportSystemApplication {
 			flightRepo.save(f3);
 			flightRepo.save(f4);
 
-			RegisteredUser ru1 = new RegisteredUser("Batuts", "123", "Valdis", "Bertrups", "bertrupsvaldis@inbox.lv", 45, false, userType.USER);
+			UserAuthority role1 = new UserAuthority("ADMIN");
+			UserAuthority role2 = new UserAuthority("USER");
+			UserAuthority role3 = new UserAuthority("VIP");
+			
+			userAuthorityRepo.save(role1);
+			userAuthorityRepo.save(role2);
+			userAuthorityRepo.save(role3);
+			
+			RegisteredUser ru1 = new RegisteredUser("Batuts", encoder.encode("123"), "Valdis", "Bertrups", "bertrupsvaldis@inbox.lv", 45, false, role2);
+			RegisteredUser ru2 = new RegisteredUser("Bosiks", encoder.encode("123"), "Tjomka", "Lidotajs", "tjomkal@inbox.lv", 0, false, role2);
+			RegisteredUser ru3 = new RegisteredUser("dzelzinieks", encoder.encode("123"), "Toms", "Plavinieks", "Plavinieks@inbox.lv", 0, false, role1);
+			
+			
+			
+			
+			
+/*			RegisteredUser ru1 = new RegisteredUser("Batuts", "123", "Valdis", "Bertrups", "bertrupsvaldis@inbox.lv", 45, false, userType.USER);
 			RegisteredUser ru2 = new RegisteredUser("Bosiks", "123", "Tjomka", "Lidotajs", "tjomkal@inbox.lv", 0, false, userType.USER);
-			RegisteredUser ru3 = new RegisteredUser("dzelzinieks", "123", "Toms", "Plavinieks", "Plavinieks@inbox.lv", 0, false, userType.USER);
+			RegisteredUser ru3 = new RegisteredUser("dzelzinieks", "123", "Toms", "Plavinieks", "Plavinieks@inbox.lv", 0, false, userType.USER);*/
 			registeredUserRepo.save(ru1);
 			registeredUserRepo.save(ru2);
 			registeredUserRepo.save(ru3);

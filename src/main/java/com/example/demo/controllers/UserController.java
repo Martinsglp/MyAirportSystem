@@ -28,7 +28,6 @@ public class UserController {
     @Autowired
     IAirportService airportService;
 
-    
     @Autowired
     IRegisterService regService;
 
@@ -47,7 +46,7 @@ public class UserController {
     		return "insert-one-user-page";
     	}
     	
-    	regService.registerRegUser(regUser.getUsername(), regUser.getPassword(), regUser.getName(), regUser.getSurname(), regUser.getEmail(), regUser.getType());
+    	regService.registerRegUser(regUser.getUsername(), regUser.getPassword(), regUser.getName(), regUser.getSurname(), regUser.getEmail(), regUser.getUserAutority());
     	//TODO change from admin to user page..
     	return "redirect:/admin/showAllUsers";
     	

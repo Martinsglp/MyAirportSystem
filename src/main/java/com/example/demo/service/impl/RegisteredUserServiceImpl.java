@@ -8,10 +8,11 @@ import org.springframework.stereotype.Service;
 
 import com.example.demo.models.BoardingPass;
 import com.example.demo.models.RegisteredUser;
-import com.example.demo.models.enums.userType;
+import com.example.demo.models.UserAuthority;
 import com.example.demo.repos.IBoardingPassRepo;
 import com.example.demo.repos.IFlightRepo;
 import com.example.demo.repos.IRegisteredUserRepo;
+import com.example.demo.repos.IUserAuthorityRepo;
 import com.example.demo.service.IRegisterService;
 import org.springframework.stereotype.Service;
 
@@ -27,10 +28,14 @@ public class RegisteredUserServiceImpl implements IRegisterService{
 	@Autowired
 	IBoardingPassRepo boardRepo;
 	
+	@Autowired
+	IUserAuthorityRepo userAuthority;
+	
 	@Override
-	public boolean registerRegUser(String username, String password, String name, String surname, String email, userType type) {
+	public boolean registerRegUser(String username, String password, String name, String surname, String email, UserAuthority type) {
 		if(!regRepo.existsByNameAndSurnameAndPassword(name, surname, password)) {
-			regRepo.save(new RegisteredUser(username, password, name, surname, email, 0, false, userType.USER));
+			UserAuthority a = userAuthority.findByRoleTitle("USER");
+			regRepo.save(new RegisteredUser(username, password, name, surname, email, 0, false, a));
 			return true;
 		}
 		return false;
@@ -63,7 +68,8 @@ public class RegisteredUserServiceImpl implements IRegisterService{
 		for(RegisteredUser reg : registeredUsers) {
 			RegisteredUser temp = regRepo.findByUsername(reg.getUsername());
 			if(temp.getExtra_points() >= minimumReq){
-				temp.setType(userType.VIP);
+				UserAuthority b = userAuthority.findByRoleTitle("VIP");
+				temp.setUserAutority(b);
 				temp.setVIP(true);
 				regRepo.save(temp);
 				return true;

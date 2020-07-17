@@ -6,10 +6,11 @@ import java.util.Collection;
 import com.example.demo.models.BoardingPass;
 import com.example.demo.models.Flight;
 import com.example.demo.models.RegisteredUser;
-import com.example.demo.models.enums.userType;
+import com.example.demo.models.UserAuthority;
+
 
 public interface IRegisterService {
-	boolean registerRegUser(String username, String password, String name, String surname, String email, userType type);
+	boolean registerRegUser(String username, String password, String name, String surname, String email, UserAuthority type);
 	
 	BoardingPass selectOneBoardingPassById(int id)throws Exception ;
 	

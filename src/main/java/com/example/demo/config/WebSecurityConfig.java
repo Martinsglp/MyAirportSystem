@@ -2,8 +2,10 @@ package com.example.demo.config;
 
 import java.lang.ProcessBuilder.Redirect;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -14,6 +16,9 @@ import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 
+import com.example.demo.repos.IRegisteredUserRepo;
+import com.example.demo.service.impl.UserDetailsServiceImpl;
+
 import net.bytebuddy.implementation.bind.MethodDelegationBinder.ParameterBinding.Anonymous;
 
 
@@ -21,16 +26,26 @@ import net.bytebuddy.implementation.bind.MethodDelegationBinder.ParameterBinding
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 
-	@Override
+	
+/*	@Override
         protected UserDetailsService userDetailsService() {
                 InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();
                 
-                manager.createUser(User.withDefaultPasswordEncoder().username("admin").password("123").roles("ADMIN").build());
-                manager.createUser(User.withDefaultPasswordEncoder().username("user").password("123").roles("USER").build());
+               manager.createUser(User.withDefaultPasswordEncoder().username("admin").password("123").roles("ADMIN").build());
+               manager.createUser(User.withDefaultPasswordEncoder().username("user").password("123").roles("USER").build());
                
+                
+                
                 return manager;
                 
-        }
+        }*/
+	
+	@Bean
+		public UserDetailsService userDetailsService() {
+		
+		return new UserDetailsServiceImpl();
+		
+	}
 	
 	 
 	//Encryption for passwords
@@ -40,11 +55,22 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
                 return PasswordEncoderFactories.createDelegatingPasswordEncoder();
         }
 	
+
 	
+	@Bean
+		public DaoAuthenticationProvider dataBaseUserAuth() {
+		DaoAuthenticationProvider authenticiationProvider = new DaoAuthenticationProvider();
+		authenticiationProvider.setUserDetailsService(userDetailsService());
+		authenticiationProvider.setPasswordEncoder(passwordEncoder());
+		
+		return authenticiationProvider;
+		
+	}
 	
 	@Override
       protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-              auth.userDetailsService(userDetailsService()).passwordEncoder(passwordEncoder());
+             // auth.userDetailsService(userDetailsService()).passwordEncoder(passwordEncoder());
+		auth.authenticationProvider(dataBaseUserAuth());
       }
 	
 	
@@ -52,8 +78,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
         .antMatchers("/guest/**").permitAll()
-        .antMatchers("/admin/**").hasRole("ADMIN")
-        .antMatchers("/h2-console/**").hasRole("ADMIN")
+        .antMatchers("/admin/**").hasAuthority("ADMIN")
+        .antMatchers("/h2-console/**").hasAuthority("ADMIN")
         .anyRequest().authenticated()
         .and()
         .formLogin().permitAll()

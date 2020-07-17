@@ -8,28 +8,19 @@ import com.example.demo.models.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-
-import com.example.demo.models.Admin;
-import com.example.demo.models.Airport;
-import com.example.demo.models.BoardingPass;
-import com.example.demo.models.Flight;
-import com.example.demo.models.RegisteredUser;
 import com.example.demo.models.enums.AirportList;
-import com.example.demo.models.enums.userType;
-import com.example.demo.repos.IAdminRepo;
 import com.example.demo.repos.IAirportRepo;
 import com.example.demo.repos.IBoardingPassRepo;
 import com.example.demo.repos.IFlightRepo;
 import com.example.demo.repos.IRegisteredUserRepo;
 import com.example.demo.repos.ISeatRepo;
+import com.example.demo.repos.IUserAuthorityRepo;
 import com.example.demo.service.IAirportService;
 import org.springframework.stereotype.Service;
 
 @Service
 public class AirportServiceImpl implements IAirportService{
 
-	@Autowired
-	IAdminRepo adminRepo;
 	
 	@Autowired
 	IBoardingPassRepo boardRepo;
@@ -46,16 +37,18 @@ public class AirportServiceImpl implements IAirportService{
 	@Autowired
 	IAirportRepo airportRepo;
 	
-	
+	@Autowired
+	IUserAuthorityRepo userAuthorityRepo;
 	
 	@Override
 	public void testModelLayer() {
 		
-		Admin a1 = new Admin("Patriots", "123456", "Janis", "Laivinieks", "laivinieks@gmail.com", userType.ADMIN);
+/*		Admin a1 = new Admin("Patriots", "123456", "Janis", "Laivinieks", "laivinieks@gmail.com", userType.ADMIN);
 		Admin a2 = new Admin("Stiprinieks", "123456", "Peteris", "Celajs", "pcelajs@gmail.com", userType.ADMIN);
 		adminRepo.save(a1);
 		adminRepo.save(a2);
-
+*/
+		
 		Airport ap1 = new Airport(AirportList.Igark_Airport, 5);
 		Airport ap2 = new Airport(AirportList.Gabbs_Airport, 4);
 		airportRepo.save(ap1);
@@ -79,16 +72,21 @@ public class AirportServiceImpl implements IAirportService{
 		flightRepo.save(f3);
 		flightRepo.save(f4);
 		
-
-		RegisteredUser ru1 = new RegisteredUser("Batuts", "123", "Valdis", "Bertrups", "bertrupsvaldsi@inbox.lv", 40, false, userType.USER);
-		RegisteredUser ru2 = new RegisteredUser("Bosiks", "123", "Tjomka", "Lidotajs", "tjomkal@inbox.lv", 0, false, userType.USER);
-		RegisteredUser ru3 = new RegisteredUser("Vaditajs", "123", "Arciks", "Smagais", "smagaisVaditajs@transport.com", 50, true, userType.VIP);
-		RegisteredUser ru4 = new RegisteredUser("Laivinieks", "123", "Didzis", "Dadzis", "dadzitis@gmail.com", 0, false, userType.USER);
+		UserAuthority role1 = new UserAuthority("ADMIN");
+		UserAuthority role2 = new UserAuthority("USER");
+		UserAuthority role3 = new UserAuthority("VIP");
+		
+		userAuthorityRepo.save(role1);
+		userAuthorityRepo.save(role2);
+		userAuthorityRepo.save(role3);
+		
+		RegisteredUser ru1 = new RegisteredUser("Batuts", "123", "Valdis", "Bertrups", "bertrupsvaldis@inbox.lv", 45, false, role2);
+		RegisteredUser ru2 = new RegisteredUser("Bosiks", "123", "Tjomka", "Lidotajs", "tjomkal@inbox.lv", 0, false, role2);
+		RegisteredUser ru3 = new RegisteredUser("dzelzinieks", "123", "Toms", "Plavinieks", "Plavinieks@inbox.lv", 0, false, role1);
 		
 		regRepo.save(ru1);
 		regRepo.save(ru2);
 		regRepo.save(ru3);
-		regRepo.save(ru4);
 
 		Seat s1 = new Seat('A', (short)14);
 		Seat s2 = new Seat('A', (short)11);

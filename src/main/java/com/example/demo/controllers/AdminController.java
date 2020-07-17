@@ -40,6 +40,7 @@ public class AdminController {
     
     @Autowired
     IRegisterService regService;
+    
 
     @GetMapping("") // url: localhost:8080/admin
     public String showAdminStartPage() {
@@ -80,8 +81,9 @@ public class AdminController {
     							registeredUser.getEmail(),
     							registeredUser.getExtra_points(),
     							registeredUser.isVIP(),
-    							registeredUser.getType());
+    							registeredUser.getUserAutority());
     	return "redirect:/admin/showAllUsers";
+
     	
     }
     
