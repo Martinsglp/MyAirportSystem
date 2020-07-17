@@ -41,13 +41,15 @@ public class UserController {
     public String postRegisterUser(@Valid RegisteredUser regUser, BindingResult result) {
     	System.out.println(regUser);
     	
+    	System.out.println(regUser.getUsername());
+    	
     	if(result.hasErrors()) {
     		return "insert-one-user-page";
     	}
     	
     	regService.registerRegUser(regUser.getUsername(), regUser.getPassword(), regUser.getName(), regUser.getSurname(), regUser.getEmail(), regUser.getType());
     	//TODO change from admin to user page..
-    	return "redirect:/admin/show-all-users-page";
+    	return "redirect:/admin/showAllUsers";
     	
     }
     

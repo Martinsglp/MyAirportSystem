@@ -52,6 +52,10 @@ public class MyAirportSystemApplication {
 			RegisteredUser ru1 = new RegisteredUser("Batuts", "123", "Valdis", "Bertrups", "bertrupsvaldis@inbox.lv", 40, false, userType.USER);
 
 
+<<<<<<< HEAD
+=======
+			RegisteredUser ru1 = new RegisteredUser("Batuts", "123", "Valdis", "Bertrups", "bertrupsvaldis@inbox.lv", 45, false, userType.USER);
+>>>>>>> 7a1ca36a6cb6d776329551e7dfb3d9cd9f837101
 			RegisteredUser ru2 = new RegisteredUser("Bosiks", "123", "Tjomka", "Lidotajs", "tjomkal@inbox.lv", 0, false, userType.USER);
 			RegisteredUser ru3 = new RegisteredUser("dzelzinieks", "123", "Toms", "Plavinieks", "Plavinieks@inbox.lv", 0, false, userType.USER);
 			registeredUserRepo.save(ru1);

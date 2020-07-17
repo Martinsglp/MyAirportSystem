@@ -14,6 +14,8 @@ public interface IAdminService {
 
 	boolean registerAdmin(String username, String password, String name, String surname, String email, userType type);
 	
+	boolean registerUser(String username, String password, String name, String surname, String email, int extra_points, boolean VIP, userType type);
+	
 	boolean authorise(Admin admin);
 	
 	ArrayList<RegisteredUser> selectAllRegisteredUsers();

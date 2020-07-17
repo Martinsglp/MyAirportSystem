@@ -41,8 +41,8 @@ public class RegisteredUserServiceImpl implements IRegisterService{
 	
 	@Override
 	public boolean registerRegUser(String username, String password, String name, String surname, String email, userType type) {
-		if(regRepo.existsByNameAndSurnameAndPassword(name, surname, password)) {
-			regRepo.save(new RegisteredUser(username, password, name, surname, email, 0, false, type));
+		if(!regRepo.existsByNameAndSurnameAndPassword(name, surname, password)) {
+			regRepo.save(new RegisteredUser(username, password, name, surname, email, 0, false, userType.USER));
 			return true;
 		}
 		return false;
