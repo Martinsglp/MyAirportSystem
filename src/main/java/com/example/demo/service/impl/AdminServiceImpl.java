@@ -1,21 +1,19 @@
 package com.example.demo.service.impl;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
+import com.example.demo.models.*;
+import com.example.demo.models.enums.AirportList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.demo.models.Admin;
-import com.example.demo.models.BoardingPass;
-import com.example.demo.models.Flight;
-import com.example.demo.models.RegisteredUser;
 import com.example.demo.models.enums.userType;
 import com.example.demo.repos.IAdminRepo;
 import com.example.demo.repos.IBoardingPassRepo;
 import com.example.demo.repos.IFlightRepo;
 import com.example.demo.repos.IRegisteredUserRepo;
 import com.example.demo.service.IAdminService;
-import org.springframework.stereotype.Service;
 
 @Service
 public class AdminServiceImpl implements IAdminService{
@@ -60,6 +58,14 @@ public class AdminServiceImpl implements IAdminService{
 	}
 
 	@Override
+	public boolean findFlightByDateAndAirports(LocalDateTime dateTime, AirportList nameFrom, AirportList nameTo){
+		if (flightRepo.existsByCreationDateTimeAndAirportFromAndAirportTo(dateTime, nameFrom, nameTo)) {
+			return true;
+		}
+		return false;
+	}
+
+	@Override
 	public ArrayList<BoardingPass> selectAllBoardingPasses() {
 		return (ArrayList<BoardingPass>) boardRepo.findAll();
 	}
@@ -79,6 +85,9 @@ public class AdminServiceImpl implements IAdminService{
 		return registRepo.findByType(userType.VIP);
 	}
 
+<<<<<<< HEAD
+
+=======
 	@Override
 	public boolean registerUser(String username, String password, String name, String surname, String email, int extra_points, boolean VIP, userType type) {
 		System.out.println(extra_points +" "+ VIP +" "+ username);
@@ -92,5 +101,6 @@ public class AdminServiceImpl implements IAdminService{
 		}
 		return false;
 	}
+>>>>>>> 7a1ca36a6cb6d776329551e7dfb3d9cd9f837101
 	
 }

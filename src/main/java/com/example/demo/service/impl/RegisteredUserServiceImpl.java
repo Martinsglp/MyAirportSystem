@@ -1,8 +1,14 @@
 package com.example.demo.service.impl;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Random;
 
+import com.example.demo.models.Flight;
+import com.example.demo.models.Seat;
+import com.example.demo.models.enums.AirportList;
+import com.example.demo.repos.ISeatRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,6 +32,12 @@ public class RegisteredUserServiceImpl implements IRegisterService{
 	
 	@Autowired
 	IBoardingPassRepo boardRepo;
+
+	@Autowired
+	IRegisterService registerService;
+
+	@Autowired
+	ISeatRepo seatRepo;
 	
 	@Override
 	public boolean registerRegUser(String username, String password, String name, String surname, String email, userType type) {
@@ -57,6 +69,12 @@ public class RegisteredUserServiceImpl implements IRegisterService{
 	}
 
 	@Override
+	public ArrayList<Flight> getAllFlightsByAirports(AirportList from, AirportList to) {
+		ArrayList<Flight> allFlights = flightRepo.findByAirportFromAndAirportTo(from, to);
+		return allFlights;
+	}
+
+	@Override
 	public boolean checkIfUserIsViP(Collection<RegisteredUser> registeredUsers) {
 		int minimumReq = 40;
 
@@ -72,11 +90,54 @@ public class RegisteredUserServiceImpl implements IRegisterService{
 		return false;
 	}
 
+	@Override
+	public boolean checkIfOneUserIsViP(RegisteredUser registeredUser) {
+		int minimumReq = 40;
+
+		for (RegisteredUser reg : regRepo.findAll()){
+			RegisteredUser temp = regRepo.findByUsername(reg.getUsername());
+			if (temp.getExtra_points() >= minimumReq) {
+				temp.setType(userType.VIP);
+				temp.setVIP(true);
+				regRepo.save(temp);
+				return true;
+			}
+		}
+		return false;
+	}
+
+	@Override
+	public boolean bookAFlight(int userID, LocalDateTime dateTime, AirportList nameFrom, AirportList nameTo) {
+			if (regRepo.existsById(userID)) {
+				LocalDateTime startTime = dateTime.withSecond(0).withMinute(0).withHour(0);
+				LocalDateTime endTime = dateTime.withSecond(59).withMinute(59).withHour(23);
+
+				RegisteredUser rus = regRepo.findById(userID).get();
+				boolean priorityGroupForRus = registerService.checkIfOneUserIsViP(rus);
+
+
+				Seat seat = new Seat('A', (short)56); // TODO seat by priority
+				seatRepo.save(seat);
+
+				ArrayList<Flight> allFlights = flightRepo.findByAirportFromAndAirportTo(nameFrom, nameTo);
+				for (Flight f : allFlights) {
+					if (f.getCreationDateTime().getYear() == dateTime.getYear() && f.getCreationDateTime().getMonth() == dateTime.getMonth()
+							&& f.getCreationDateTime().getDayOfMonth() == dateTime.getDayOfMonth()) {
+						System.out.println("Datums atrasts");
+						BoardingPass boardingPass = new BoardingPass(priorityGroupForRus, rus, f, seat);
+						boardRepo.save(boardingPass);
+						return true;
+					}
+				}
+			}
+		return false;
+	}
 	
-
-
-	
-
+	@Override
+	public boolean earnExtraPoints(BoardingPass bp, RegisteredUser ru) {
+//		if (bp.ex)
+		return false;
+	}
 
 
 

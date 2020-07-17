@@ -41,13 +41,21 @@ public class MyAirportSystemApplication {
 			Flight f2 = new Flight(LocalDateTime.now().plusDays(3), 5, AirportList.Carauari_Airport, AirportList.Daru_Airport, 190);
 			Flight f3 = new Flight(LocalDateTime.now().plusDays(2), 3, AirportList.Bella_Coola_Airport, AirportList.Hasvik_Airport, 133);
 			Flight f4 = new Flight(LocalDateTime.now().plusDays(4), 2, AirportList.Eagle_Airport, AirportList.Vilnius_Airport, 190);
+			Flight f5 = new Flight(LocalDateTime.now().plusDays(10), 2, AirportList.Eagle_Airport, AirportList.Vilnius_Airport, 190);
 
 			flightRepo.save(f1);
 			flightRepo.save(f2);
 			flightRepo.save(f3);
 			flightRepo.save(f4);
+			flightRepo.save(f5);
 
+			RegisteredUser ru1 = new RegisteredUser("Batuts", "123", "Valdis", "Bertrups", "bertrupsvaldis@inbox.lv", 40, false, userType.USER);
+
+
+<<<<<<< HEAD
+=======
 			RegisteredUser ru1 = new RegisteredUser("Batuts", "123", "Valdis", "Bertrups", "bertrupsvaldis@inbox.lv", 45, false, userType.USER);
+>>>>>>> 7a1ca36a6cb6d776329551e7dfb3d9cd9f837101
 			RegisteredUser ru2 = new RegisteredUser("Bosiks", "123", "Tjomka", "Lidotajs", "tjomkal@inbox.lv", 0, false, userType.USER);
 			RegisteredUser ru3 = new RegisteredUser("dzelzinieks", "123", "Toms", "Plavinieks", "Plavinieks@inbox.lv", 0, false, userType.USER);
 			registeredUserRepo.save(ru1);

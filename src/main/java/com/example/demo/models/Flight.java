@@ -27,7 +27,7 @@ public class Flight implements Comparable<Flight>{
     private int fl_ID;
 
     @Column(name="DateAndTime")
-    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME, pattern = "dd-MM-yyyy HH:mm")
     private LocalDateTime creationDateTime;
 
     @Column(name="Duration")
@@ -44,9 +44,6 @@ public class Flight implements Comparable<Flight>{
     @Min(value = 0, message = "The value must be positive")
     private double flightPrice;
 
-    
-    
-    
     public Flight(LocalDateTime dateAndTime, int duration, AirportList airportFrom, AirportList airportTo, double flightPrice) {
         this.creationDateTime = dateAndTime.withNano(0);
         this.duration = duration;
@@ -54,11 +51,7 @@ public class Flight implements Comparable<Flight>{
         this.airportTo = airportTo;
         this.flightPrice = flightPrice;
     }
-    
-    
 
-    
-    
     @OneToMany(mappedBy = "flight")
     private Collection<BoardingPass> boardingPasses;
 

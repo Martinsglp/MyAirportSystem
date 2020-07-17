@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Show flights by airports</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" type="text/css" href="webjars/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <link rel="stylesheet" th:href="@{/css/main.css}" href="../../css/main.css"/>
+</head>
+<body>
+<form action="#" th:action="@{/regUser/showAllChosenFlights}" th:object="${flight}" method="post">
+
+    <div>
+        <h3>Your selected flights by Airports: </h3>
+    </div>
+
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Date</th>
+            <th>Airport from</th>
+            <th>Airport to</th>
+            <th>Price</th>
+        </tr>
+        </thead>
+
+
+        <tr th:each="flight: ${#lists.sort(allFlightsByAirports, byFlightPrice)}">
+            <td th:text="${flight.getFl_ID()}">1</td>
+            <td th:text="${flight.getCreationDateTime()}">10-10-2020</td>
+            <td th:text="${flight.getAirportFrom()}">RIX</td>
+            <td th:text="${flight.getAirportTo()}">AAA</td>
+            <td th:text="${flight.getFlightPrice()}">500</td>
+        </tr>
+
+
+    </table>
+</form>
+
+<div class="backButton">
+    <a class="buttons" href="/guest/showFlightSelectingPage" role="button">BACK</a>
+</div>
+
+</body>
+</html>

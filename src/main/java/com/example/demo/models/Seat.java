@@ -36,7 +36,7 @@ public class Seat {
 		this.seatNr = seatNr;
 	}
 
-	@OneToOne
-	@JoinColumn(name="BP_ID")
+	@OneToOne(mappedBy = "seat")
+	@ToString.Exclude
 	private BoardingPass boardingPass;
 }

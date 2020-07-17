@@ -127,6 +127,11 @@ public class FlightServiceImpl implements IFlightService{
 	}
 
 	@Override
+	public boolean findFlightByDateAndAirports(LocalDateTime dateTime, AirportList nameFrom, AirportList nameTo) {
+		return flightRepo.existsByCreationDateTimeAndAirportFromAndAirportTo(dateTime,nameFrom, nameTo);
+	}
+
+	@Override
 	public void saveTestingData() {
 		// TODO Auto-generated method stub
 		

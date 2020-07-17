@@ -24,34 +24,35 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 	@Override
         protected UserDetailsService userDetailsService() {
                 InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();
-                
+
                 manager.createUser(User.withDefaultPasswordEncoder().username("admin").password("123").roles("ADMIN").build());
                 manager.createUser(User.withDefaultPasswordEncoder().username("user").password("123").roles("USER").build());
-               
+
                 return manager;
-                
+
         }
-	
-	 
+
+
 	//Encryption for passwords
 	@Bean
         public PasswordEncoder passwordEncoder()
         {
                 return PasswordEncoderFactories.createDelegatingPasswordEncoder();
         }
-	
-	
-	
+
+
+
 	@Override
       protected void configure(AuthenticationManagerBuilder auth) throws Exception {
               auth.userDetailsService(userDetailsService()).passwordEncoder(passwordEncoder());
       }
-	
-	
+
+
 	@Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
         .antMatchers("/guest/**").permitAll()
+        .antMatchers("/regUser/**").permitAll()
         .antMatchers("/admin/**").hasRole("ADMIN")
         .antMatchers("/h2-console/**").hasRole("ADMIN")
         .anyRequest().authenticated()
@@ -60,15 +61,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
         .and()
         .logout().permitAll().logoutSuccessUrl("/guest");
 
-          
+
         http.csrf().disable();
         http.headers().frameOptions().disable();
-                    
+
     }
-	
-	
-	
-	
-	
+
+
+
+
+
 
 }

@@ -13,8 +13,13 @@ public interface IFlightRepo extends CrudRepository<Flight, Integer> {
     boolean existsByCreationDateTimeAndDurationAndAirportFromAndAirportTo(LocalDateTime dateAndTime, int duration, AirportList airportFrom, AirportList airportTo);
 
     boolean existsByAirportFromAndAirportTo(AirportList airportFrom, AirportList airportTo);
+
+    boolean existsByCreationDateTimeAndAirportFromAndAirportTo(LocalDateTime dateAndTime, AirportList airportFrom, AirportList airportTo);
+
     // exists returns boolean, findBy returns object
     ArrayList<Flight> findByAirportFromAndAirportTo(AirportList airportFrom, AirportList airportTo);
 
     ArrayList<BoardingPass> findByBoardingPasses(BoardingPass pass);
+
+    Flight findByCreationDateTimeAndAirportFromAndAirportTo(LocalDateTime dateAndTime, AirportList airportFrom, AirportList airportTo);
 }
