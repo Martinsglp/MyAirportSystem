@@ -1,9 +1,13 @@
 package com.example.demo.controllers;
 
 import com.example.demo.forms.BookAFlightForm;
+import com.example.demo.models.BoardingPass;
 import com.example.demo.models.Flight;
+import com.example.demo.repos.IRegisteredUserRepo;
 import com.example.demo.service.IAdminService;
 import com.example.demo.service.IFlightService;
+
+import org.hibernate.validator.internal.util.privilegedactions.GetMethod;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,10 +25,32 @@ public class RegUserController {
 	IRegisterService regService;
 
 	@Autowired
+	IRegisteredUserRepo regRepo;
+	
+	@Autowired
 	IAdminService adminService;
 
 	@Autowired
 	IFlightService flightService;
+	
+	
+	
+/*    @GetMapping("/checkIfVip")
+    public String getCheckIfVip(Model model) {
+    	regService.checkIfUserIsViP(adminService.selectAllRegisteredUsers());
+    	
+    	model.addAttribute("allRegisteredUsers", adminService.selectAllVipRegisteredUsers());
+    	return "show-all-users-page";
+    }
+ */
+	/*
+	@GetMapping("/checkIn/{id}")
+	public String getCheckIn(@PathVariable(name = "id") int id, Model model) {
+		regService.checkIn()
+		
+		model.addAttribute("innerObject", regService.checkIn(regRepo.findBoardingPassById(id)));
+		return "show-all-users-page";
+	}*/
 
 	@GetMapping("/{id}")
 	public String showRegUserStartPage(@PathVariable(name="id") int id, Model model){

@@ -26,13 +26,22 @@ public class BoardingPass {
 	
 	@Column(name = "Priority")
 	private boolean Priority_Group;
+	
+	@Column(name = "checkIn")
+	private boolean checkIn;
 
-	public BoardingPass(boolean priority_Group, RegisteredUser registeredUser, Flight flight, Seat seat) {
+	public BoardingPass(boolean priority_Group, boolean checkIn, RegisteredUser registeredUser, Flight flight,
+			Seat seat) {
+		super();
 		Priority_Group = priority_Group;
+		this.checkIn = checkIn;
 		this.registeredUser = registeredUser;
 		this.flight = flight;
 		this.seat = seat;
 	}
+
+
+
 
 	@ManyToOne
 	@JoinColumn(name="RUS_ID")

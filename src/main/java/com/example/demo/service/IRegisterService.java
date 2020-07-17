@@ -18,6 +18,8 @@ public interface IRegisterService {
 	ArrayList<BoardingPass> getAllFlightsByBoardingPass(BoardingPass pass)throws Exception;
 	
 	boolean checkIfUserIsViP(Collection<RegisteredUser> registeredUsers);
+	
+	//boolean checkIn(BoardingPass boardingPass);
 
 	boolean checkIfOneUserIsViP(RegisteredUser registeredUser);
 

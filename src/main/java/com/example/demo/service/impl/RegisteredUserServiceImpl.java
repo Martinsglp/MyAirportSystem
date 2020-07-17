@@ -124,7 +124,7 @@ public class RegisteredUserServiceImpl implements IRegisterService{
 					if (f.getCreationDateTime().getYear() == dateTime.getYear() && f.getCreationDateTime().getMonth() == dateTime.getMonth()
 							&& f.getCreationDateTime().getDayOfMonth() == dateTime.getDayOfMonth()) {
 						System.out.println("Datums atrasts");
-						BoardingPass boardingPass = new BoardingPass(priorityGroupForRus, rus, f, seat);
+						BoardingPass boardingPass = new BoardingPass(priorityGroupForRus, false, rus, f, seat);
 						boardRepo.save(boardingPass);
 						return true;
 					}
@@ -138,6 +138,21 @@ public class RegisteredUserServiceImpl implements IRegisterService{
 //		if (bp.ex)
 		return false;
 	}
+/*
+	@Override
+	public boolean checkIn(BoardingPass boardingPass) {
+		if(boardRepo.existsById(boardingPass.getBp_ID())) {
+			if(boardingPass.isCheckIn() == false) {
+				boardingPass.setCheckIn(true);
+				boardRepo.save(boardingPass);
+				return true;
+			}
+			
+		}
+		return false;
+	}*/
+
+
 
 
 

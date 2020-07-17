@@ -85,9 +85,7 @@ public class AdminServiceImpl implements IAdminService{
 		return registRepo.findByType(userType.VIP);
 	}
 
-<<<<<<< HEAD
 
-=======
 	@Override
 	public boolean registerUser(String username, String password, String name, String surname, String email, int extra_points, boolean VIP, userType type) {
 		System.out.println(extra_points +" "+ VIP +" "+ username);
@@ -101,6 +99,6 @@ public class AdminServiceImpl implements IAdminService{
 		}
 		return false;
 	}
->>>>>>> 7a1ca36a6cb6d776329551e7dfb3d9cd9f837101
+
 	
 }

@@ -92,9 +92,9 @@ public class AirportServiceImpl implements IAirportService{
 		seatRepo.save(s3);
 		seatRepo.save(s4);
 
-		BoardingPass bp1 = new BoardingPass(false, ru1, f1, s1);
-		BoardingPass bp2 = new BoardingPass(true, ru2, f1, s2);
-		BoardingPass bp3 = new BoardingPass(true, ru3, f3, s3);
+		BoardingPass bp1 = new BoardingPass(false, false, ru1, f1, s1);
+		BoardingPass bp2 = new BoardingPass(true, false, ru2, f1, s2);
+		BoardingPass bp3 = new BoardingPass(true, false, ru3, f3, s3);
 
 		boardRepo.save(bp1);
 		boardRepo.save(bp2);

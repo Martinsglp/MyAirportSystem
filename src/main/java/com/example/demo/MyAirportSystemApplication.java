@@ -49,13 +49,7 @@ public class MyAirportSystemApplication {
 			flightRepo.save(f4);
 			flightRepo.save(f5);
 
-			RegisteredUser ru1 = new RegisteredUser("Batuts", "123", "Valdis", "Bertrups", "bertrupsvaldis@inbox.lv", 40, false, userType.USER);
-
-
-<<<<<<< HEAD
-=======
 			RegisteredUser ru1 = new RegisteredUser("Batuts", "123", "Valdis", "Bertrups", "bertrupsvaldis@inbox.lv", 45, false, userType.USER);
->>>>>>> 7a1ca36a6cb6d776329551e7dfb3d9cd9f837101
 			RegisteredUser ru2 = new RegisteredUser("Bosiks", "123", "Tjomka", "Lidotajs", "tjomkal@inbox.lv", 0, false, userType.USER);
 			RegisteredUser ru3 = new RegisteredUser("dzelzinieks", "123", "Toms", "Plavinieks", "Plavinieks@inbox.lv", 0, false, userType.USER);
 			registeredUserRepo.save(ru1);
@@ -73,9 +67,9 @@ public class MyAirportSystemApplication {
 			seatRepo.save(s3);
 			seatRepo.save(s4);
 
-			BoardingPass bp1 = new BoardingPass(false, ru1, f1, s1);
-			BoardingPass bp2 = new BoardingPass(true, ru2, f1, s2);
-			BoardingPass bp3 = new BoardingPass(true, ru3, f3, s3);
+			BoardingPass bp1 = new BoardingPass(false, false, ru1, f1, s1);
+			BoardingPass bp2 = new BoardingPass(true, false, ru2, f1, s2);
+			BoardingPass bp3 = new BoardingPass(true, false, ru3, f3, s3);
 
 			boardingPassRepo.save(bp1);
 			boardingPassRepo.save(bp2);
