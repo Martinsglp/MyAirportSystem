@@ -43,14 +43,20 @@ public class RegUserController {
     	return "show-all-users-page";
     }
  */
-	/*
-	@GetMapping("/checkIn/{id}")
+	
+	@GetMapping("/showBoardingPass/{id}")
 	public String getCheckIn(@PathVariable(name = "id") int id, Model model) {
-		regService.checkIn()
 		
-		model.addAttribute("innerObject", regService.checkIn(regRepo.findBoardingPassById(id)));
-		return "show-all-users-page";
-	}*/
+		try {
+			model.addAttribute("Boarding", regService.getBoardingPassByUserId(id));
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return "show-boarding-pass-details";
+	}
 
 	@GetMapping("/{id}")
 	public String showRegUserStartPage(@PathVariable(name="id") int id, Model model){

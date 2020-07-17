@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Show all BoardingPasses</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" type="text/css" href="webjars/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <link rel="stylesheet" th:href="@{/css/main.css}" href="../../css/main.css"/>
+</head>
+<body>
+<form action="#" th:action="@{/regUser/showBoardingPass/__${id}__}" th:object="${boardingPass}" method="post">
+
+    <div>
+        <h3>All registered flights: </h3>
+    </div>
+
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Priority</th>
+            <th>CheckIn</th>
+        </tr>
+        </thead>
+
+        <tbody>
+            <tr th:each="bp: ${Boarding}">
+                <td th:text="${bp.getBp_ID()}"></td>
+                <td th:text="${bp.isPriority_Group()}"></td>
+                <td th:text="${bp.isCheckIn()}"></td>
+
+            </tr>
+        </tbody>
+
+    </table>
+    <!--  
+    <div class="backButton">
+        <a class="buttons" href="/admin/registerNewFlight" role="button">GO TO REGISTRATION</a>
+    </div>
+
+    <div class="backButton">
+        <a class="buttons" href="/admin" role="button">BACK TO MAIN PAGE</a>
+    </div>
+	-->
+
+
+</form>
+</body>
+</html>

@@ -18,6 +18,7 @@ import com.example.demo.models.enums.userType;
 import com.example.demo.repos.IBoardingPassRepo;
 import com.example.demo.repos.IFlightRepo;
 import com.example.demo.repos.IRegisteredUserRepo;
+import com.example.demo.service.IAdminService;
 import com.example.demo.service.IRegisterService;
 import org.springframework.stereotype.Service;
 
@@ -38,6 +39,9 @@ public class RegisteredUserServiceImpl implements IRegisterService{
 
 	@Autowired
 	ISeatRepo seatRepo;
+	
+	@Autowired
+	IAdminService adminService;
 	
 	@Override
 	public boolean registerRegUser(String username, String password, String name, String surname, String email, userType type) {
@@ -138,7 +142,7 @@ public class RegisteredUserServiceImpl implements IRegisterService{
 //		if (bp.ex)
 		return false;
 	}
-/*
+
 	@Override
 	public boolean checkIn(BoardingPass boardingPass) {
 		if(boardRepo.existsById(boardingPass.getBp_ID())) {
@@ -150,9 +154,21 @@ public class RegisteredUserServiceImpl implements IRegisterService{
 			
 		}
 		return false;
-	}*/
+	}
 
+	@Override
+	public BoardingPass getBoardingPassByUserId(int id) throws Exception {
+		ArrayList<BoardingPass> allPasses = adminService.selectAllBoardingPasses();
+		
+		for(BoardingPass bp : allPasses) {
+			if(bp.getRegisteredUser().getRus_ID() == id) {
+				return bp;
+			}
+		}
+		throw new Exception("Invalid id!");
+	}
 
+	
 
 
 

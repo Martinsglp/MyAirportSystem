@@ -22,6 +22,6 @@ public interface IRegisteredUserRepo extends CrudRepository<RegisteredUser, Inte
 
 	boolean existsByUsername(String username);
 	
-	//ArrayList<BoardingPass> findBoardingPassById(int id);
+	ArrayList<BoardingPass> findBoardingPassById(int id);
 	
 }

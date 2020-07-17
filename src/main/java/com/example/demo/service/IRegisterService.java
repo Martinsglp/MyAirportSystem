@@ -19,7 +19,7 @@ public interface IRegisterService {
 	
 	boolean checkIfUserIsViP(Collection<RegisteredUser> registeredUsers);
 	
-	//boolean checkIn(BoardingPass boardingPass);
+	boolean checkIn(BoardingPass boardingPass);
 
 	boolean checkIfOneUserIsViP(RegisteredUser registeredUser);
 
@@ -28,4 +28,6 @@ public interface IRegisterService {
 	ArrayList<Flight> getAllFlightsByAirports(AirportList from, AirportList to);
 
 	boolean earnExtraPoints(BoardingPass bp, RegisteredUser ru);
+	
+	BoardingPass getBoardingPassByUserId(int id)throws Exception;
 }
