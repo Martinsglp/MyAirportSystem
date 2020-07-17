@@ -44,7 +44,7 @@ public class UserAuthority {
 		
 	}
 
-
+	@ToString.Exclude
 	@OneToMany(mappedBy = "userAutority")
 	private Collection<RegisteredUser> registeredUsers;
 	

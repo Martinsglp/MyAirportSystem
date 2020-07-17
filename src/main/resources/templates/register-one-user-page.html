@@ -46,16 +46,6 @@
 					<td th:if= "${#fields.hasErrors('VIP')}" th:errors="*{VIP}"> </td>
 				</tr>
 				
-				<tr> 
-					<td>Type of User </td>
-					<td> 
-						<select name= "type">
-							<option th:each="type : ${T(com.example.demo.models.enums.userType).values()}" th:value="${type}" th:text = "${type}" ><!-- What will be stored --> <!-- where to look for -->
-							</option>
-						</select>
-					</td>
-				</tr>
-				
 				
 			</table>
 			

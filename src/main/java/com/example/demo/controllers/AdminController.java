@@ -13,6 +13,7 @@ import com.example.demo.service.IRegisterService;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -40,6 +41,9 @@ public class AdminController {
     
     @Autowired
     IRegisterService regService;
+    
+    @Autowired
+	PasswordEncoder encoder;
     
 
     @GetMapping("") // url: localhost:8080/admin
@@ -75,7 +79,7 @@ public class AdminController {
     	}
     	
     	adminService.registerUser(registeredUser.getUsername(),
-    							registeredUser.getPassword(),
+    			encoder.encode(registeredUser.getPassword()),
     							registeredUser.getName(),
     							registeredUser.getSurname(),
     							registeredUser.getEmail(),
@@ -141,7 +145,7 @@ public class AdminController {
 	public String getDelete(@PathVariable(name = "id")int id, Model model) {
 		if(flightService.deleteFlightById(id)) {
 			model.addAttribute("innerObject");
-			return "show-all-flights-page";
+			return "redirect:/admin/showAllFlights";
 		}
 		return "error";
 	}

@@ -7,6 +7,7 @@ import com.example.demo.service.IFlightService;
 import com.example.demo.service.IRegisterService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -22,6 +23,9 @@ import java.util.List;
 @RequestMapping("/guest")
 public class UserController {
 
+	@Autowired
+	PasswordEncoder encoder;
+	
     @Autowired
     IFlightService flightService;
 
@@ -46,7 +50,7 @@ public class UserController {
     		return "insert-one-user-page";
     	}
     	
-    	regService.registerRegUser(regUser.getUsername(), regUser.getPassword(), regUser.getName(), regUser.getSurname(), regUser.getEmail(), regUser.getUserAutority());
+    	regService.registerRegUser(regUser.getUsername(), encoder.encode(regUser.getPassword()) , regUser.getName(), regUser.getSurname(), regUser.getEmail(), regUser.getUserAutority());
     	//TODO change from admin to user page..
     	return "redirect:/admin/showAllUsers";
     	
