@@ -41,11 +41,13 @@ public class MyAirportSystemApplication {
 			Flight f2 = new Flight(LocalDateTime.now().plusDays(3), 5, AirportList.Carauari_Airport, AirportList.Daru_Airport, 190);
 			Flight f3 = new Flight(LocalDateTime.now().plusDays(2), 3, AirportList.Bella_Coola_Airport, AirportList.Hasvik_Airport, 133);
 			Flight f4 = new Flight(LocalDateTime.now().plusDays(4), 2, AirportList.Eagle_Airport, AirportList.Vilnius_Airport, 190);
+			Flight f5 = new Flight(LocalDateTime.now().plusDays(10), 2, AirportList.Eagle_Airport, AirportList.Vilnius_Airport, 190);
 
 			flightRepo.save(f1);
 			flightRepo.save(f2);
 			flightRepo.save(f3);
 			flightRepo.save(f4);
+			flightRepo.save(f5);
 
 			RegisteredUser ru1 = new RegisteredUser("Batuts", "123", "Valdis", "Bertrups", "bertrupsvaldis@inbox.lv", 40, false, userType.USER);
 

@@ -23,17 +23,11 @@ public interface IAdminService {
 	ArrayList<Flight> selectAllFlights();
 	
 	ArrayList<BoardingPass> selectAllBoardingPasses();
-	
+
 	boolean deleteFlightById(int id);
-	
-	//INSERT
-	
-	
-	//boolean updateFlightById(int id, Date date, int duration,);
-	//TODO write update shit...
+
 
 	boolean findFlightByDateAndAirports(LocalDateTime dateTime, AirportList nameFrom, AirportList nameTo);
 
-	boolean bookAFlight(int userID, LocalDateTime dateTime, AirportList nameFrom, AirportList nameTo);
 
 }

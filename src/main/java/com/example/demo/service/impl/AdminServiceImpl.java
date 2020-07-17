@@ -5,7 +5,6 @@ import java.util.ArrayList;
 
 import com.example.demo.models.*;
 import com.example.demo.models.enums.AirportList;
-import com.example.demo.service.IRegisterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,7 +14,6 @@ import com.example.demo.repos.IBoardingPassRepo;
 import com.example.demo.repos.IFlightRepo;
 import com.example.demo.repos.IRegisteredUserRepo;
 import com.example.demo.service.IAdminService;
-import org.springframework.stereotype.Service;
 
 @Service
 public class AdminServiceImpl implements IAdminService{
@@ -31,9 +29,6 @@ public class AdminServiceImpl implements IAdminService{
 	
 	@Autowired
 	IBoardingPassRepo boardRepo;
-
-	@Autowired
-	IRegisterService registerService;
 	
 	@Override
 	public boolean registerAdmin(String username, String password, String name, String surname, String email, userType type) {
@@ -90,18 +85,6 @@ public class AdminServiceImpl implements IAdminService{
 		return registRepo.findByType(userType.VIP);
 	}
 
-	@Override
-	public boolean bookAFlight(int userID, LocalDateTime dateTime, AirportList nameFrom, AirportList nameTo) {
-		for (RegisteredUser rus : registRepo.findAll()) {
-			if (rus.getRus_ID() == userID) {
-				boolean priorityGroupForRus = registerService.checkIfOneUserIsViP(rus);
-				BoardingPass boardingPass = new BoardingPass(priorityGroupForRus, rus,
-						flightRepo.findByCreationDateTimeAndAirportFromAndAirportTo(dateTime, nameFrom, nameTo), new Seat('A', (short)56));
-				boardRepo.save(boardingPass);
-				return true;
-			}
-		}
-		return false;
-	}
+
 	
 }

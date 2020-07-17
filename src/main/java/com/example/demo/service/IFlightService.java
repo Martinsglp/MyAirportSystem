@@ -30,6 +30,6 @@ public interface IFlightService {
 
 	ArrayList<Flight> getAllFlightsByDate(LocalDateTime creationDateTime);
 
-
+	boolean findFlightByDateAndAirports(LocalDateTime dateTime, AirportList nameFrom, AirportList nameTo);
 }
 
